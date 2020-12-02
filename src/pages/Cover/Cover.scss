@@ -1,0 +1,24 @@
+.cover-container {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+
+  .left-container {
+    background-color: aqua;
+    min-width: 50%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .right-container {
+    background-color: red;
+    min-width: 50%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
