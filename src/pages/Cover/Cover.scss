@@ -5,7 +5,7 @@
   flex-direction: row;
 
   .left-container {
-    background-color: aqua;
+    background-color: #FFCB77;
     min-width: 50%;
     min-height: 100vh;
     display: flex;
@@ -14,7 +14,7 @@
   }
 
   .right-container {
-    background-color: red;
+    background-color: #F4A261;
     min-width: 50%;
     min-height: 100vh;
     display: flex;
@@ -22,3 +22,4 @@
     justify-content: center;
   }
 }
+
