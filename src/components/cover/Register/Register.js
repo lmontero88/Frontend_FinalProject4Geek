@@ -1,6 +1,8 @@
 import React from 'react'
 
+
 const Register = () => {
+
   return (
     <div className="modal fade" id="modalRegister" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
  
@@ -63,4 +65,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Register;

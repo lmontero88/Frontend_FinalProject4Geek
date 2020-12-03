@@ -6,6 +6,7 @@ import { TOKEN_KEY } from '../../../utils/constants';
 import { isEmailValid } from '../../../utils/validators';
 import Loading from '../../commons/Loading/Loading';
 import Register from '../Register/Register';
+import Recuperar from '../Recuperar/Recuperar'
 
 const Login = (props) => {
   const { setRefresh } = useAuth();
@@ -74,12 +75,13 @@ const Login = (props) => {
                 : <Loading />
             }
           </div>
-          <p className="text-center"><a href="#" className="btn">¿Olvidaste tu contraseña?</a></p>
+          <p className="text-center"><a href="#" data-toggle="modal" data-target="#modalRecover" className="btn">¿Olvidaste tu contraseña?</a></p>
+          <Recuperar />        
         </form>
         <hr />
 
         <div className="container d-flex justify-content-center">
-          <button className="btn btn-success w-75" data-toggle="modal" data-target="#modalRegister">Registrarse</button>
+          <button className="btn btn-success w-75 btn-agua" data-toggle="modal" data-target="#modalRegister">Registrarse</button>
         </div>
         <Register />
       </article>

@@ -5,7 +5,7 @@
   flex-direction: row;
 
   .left-container {
-    background-color: #FFCB77;
+    background-image: linear-gradient(85deg, #ffd481 0, #ffcb77 50%, #f9c26d 100%);
     min-width: 50%;
     min-height: 100vh;
     display: flex;
@@ -23,3 +23,16 @@
   }
 }
 
+h1{
+  color: black;
+  font-family: 'Sansita Swashed', cursive;
+}
+h2{
+  color: rgb(68, 68, 68);
+  font-family: 'Roboto', sans-serif;;
+}
+
+.btn-agua{
+  background-color: #17C3B2;
+  
+}
