@@ -2,7 +2,13 @@ import Home from '../pages/Home';
 import Match from '../pages/Match';
 import Profesores from '../pages/Profesores';
 import Clasificados from '../pages/Clasificados';
+import Perfil from '../pages/Perfil';
 import NotFound from '../pages/NotFound';
+import MisMatch from '../pages/MisMatch';
+import MisPublicaciones from '../pages/MisPublicaciones';
+import FavJugadores from '../pages/Favoritos/Jugadores/FavJugadores';
+import FavClasificados from '../pages/Favoritos/Clasificados/FavClasificados';
+import FavProfesores from '../pages/Favoritos/Profesores/FavProfesores';
 
 const routes = [
   {
@@ -24,6 +30,36 @@ const routes = [
     path: '/clasificados',
     exact: false,
     page: Clasificados
+  },
+  {
+    path: '/perfil',
+    exact: false,
+    page: Perfil
+  },
+  {
+    path: '/mis_match',
+    exact: false,
+    page: MisMatch
+  },
+  {
+    path: '/mis_publiaciones',
+    exact: false,
+    page: MisPublicaciones
+  },
+  {
+    path: '/favorito/jugadores',
+    exact: false,
+    page: FavJugadores
+  },
+  {
+    path: '/favorito/clasificados',
+    exact: false,
+    page: FavClasificados
+  },
+  {
+    path: '/favorito/profesores',
+    exact: false,
+    page: FavProfesores
   },
   {
     path: '*',
