@@ -4,7 +4,7 @@ import MainLayout from '../../layouts/MainLayout';
 const Home = () => {
   return (
     <MainLayout>
-      <h1>Home</h1>
+      <h1>Home new</h1>
     </MainLayout>
   )
 }
