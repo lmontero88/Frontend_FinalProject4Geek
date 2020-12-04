@@ -10,7 +10,7 @@ const Cover = () => {
       <div className="left-container">
         <Welcome />
       </div>
-      <div className="right-container">
+      <div className="right-container bg-primary">
         <Login />
       </div>
       <Register />
