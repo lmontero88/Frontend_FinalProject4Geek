@@ -1,12 +1,12 @@
 import React from 'react';
 import MainLayout from '../../layouts/MainLayout';
 
-const Home = () => {
+const Clasificados = () => {
   return (
     <MainLayout>
-      <h1>Home</h1>
+      <h1>Clasificados</h1>
     </MainLayout>
   )
 }
 
-export default Home;
+export default Clasificados;

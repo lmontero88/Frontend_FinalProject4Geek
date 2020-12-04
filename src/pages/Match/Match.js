@@ -1,12 +1,12 @@
 import React from 'react';
 import MainLayout from '../../layouts/MainLayout';
 
-const Home = () => {
+const Match = () => {
   return (
     <MainLayout>
-      <h1>Home</h1>
+      <h1>Match</h1>
     </MainLayout>
   )
 }
 
-export default Home;
+export default Match;

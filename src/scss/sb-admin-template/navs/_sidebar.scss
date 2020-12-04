@@ -433,21 +433,22 @@
             &:focus,
             &:hover {
                 color: $white;
-
                 i {
                     color: $white;
                 }
             }
-
+            
             // Accordion
             &[data-toggle="collapse"]::after {
                 color: fade-out($white, 0.5);
             }
         }
-
+        
         &.active {
             .nav-link {
                 color: $white;
+                // TODO: cambiar color aqui del link activo
+                // background-color: red;
 
                 i {
                     color: $white;
