@@ -15,7 +15,7 @@ function Navbar() {
     }
 
     return (
-        <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow ">
 
 
 
@@ -27,13 +27,13 @@ function Navbar() {
                     <div className="nav-link dropdown-toggle" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span className="mr-2 d-none d-lg-inline text-gray-600 small">Hi, Tod@s</span>
-                        <img className="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                        <img className="img-profile rounded-circle" src="https://place-hold.it/100" alt='Profile'/>
                     </div>
                     <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                         aria-labelledby="userDropdown">
                         <NavLink className="dropdown-item" to="/perfil">
                             <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Pérfil
+                                    Perfil
                         </NavLink>
                         <NavLink className="dropdown-item" to="/mis_publiaciones">
                             <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -46,7 +46,7 @@ function Navbar() {
                         <div className="dropdown-divider"></div>
                         <button className="dropdown-item" onClick={handleLogout}>
                             <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Cerrar Sección
+                                    Cerrar Sesión
                                 </button>
                     </div>
                 </li>
