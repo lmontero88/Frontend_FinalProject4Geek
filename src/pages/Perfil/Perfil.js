@@ -1,36 +1,43 @@
-import React from "react";
+import React/*, { useState }*/ from "react";
 import MainLayout from "../../layouts/MainLayout";
+import './Perfil.scss';
 
 function Perfil() {
-    let url = "#";
+  let url = "#";
+
+  /*const [editForm, setEditForm] = useState();
+
+  const handleClick = () => setEditForm();*/
+
   return (
     <div>
       <MainLayout>
-        <div className="container mt-4 w-100">
+        <div className="container mt-5 w-100">
           <div className="row">
-            <div className="col-md-2 text-center">
+            <div className="col-md-2 col-sm-12 text-center">
               <div className="row">
-                <div className="col-md-12 mb-3">
+                <div className="col-md-12 col-sm-12 mb-3">
                   <img
                     src="https://place-hold.it/150"
+                    id="profileImage"
                     className="rounded-circle"
                     alt="profileImage"
                   ></img>
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-12">
+                <div className="col-md-12 col-sm-12">
                   <a href={url} type="button" className="btn btn-danger">
                     Edit Image
                   </a>
                 </div>
               </div>
             </div>
-            <div className="col-md-5 border-right border-left px-3 py-2">
+            <div className="col-md-5 col-sm-12 border-right border-left px-3 py-2">
               <form>
                 <fieldset disabled>
                   <div className="form-row">
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-6 col-sm-12">
                       <label for="firstName">First Name</label>
                       <input
                         type="text"
@@ -39,7 +46,7 @@ function Perfil() {
                         placeholder="First name"
                       />
                     </div>
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-6 col-sm-12">
                       <label for="lastName">Last Name</label>
                       <input
                         type="text"
@@ -50,7 +57,7 @@ function Perfil() {
                     </div>
                   </div>
                   <div className="form-row">
-                    <div className="form-group col-md-12">
+                    <div className="form-group col-md-12 col-sm-12">
                       <label for="email">Email</label>
                       <input
                         type="text"
@@ -61,7 +68,7 @@ function Perfil() {
                     </div>
                   </div>
                   <div className="form-row">
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-6 col-sm-12">
                       <label for="phone">Phone Number</label>
                       <input
                         type="text"
@@ -70,7 +77,7 @@ function Perfil() {
                         placeholder="+5698625898"
                       ></input>
                     </div>
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-6 col-sm-12">
                       <label for="password">Password</label>
                       <input
                         type="text"
@@ -81,7 +88,7 @@ function Perfil() {
                     </div>
                   </div>
                   <div className="form-row">
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-6 col-sm-12">
                       <label for="region">Region</label>
                       <input
                         type="text"
@@ -90,7 +97,7 @@ function Perfil() {
                         placeholder="Region Example"
                       />
                     </div>
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-6 col-sm-12">
                       <label for="comuna">Comuna</label>
                       <input
                         type="text"
@@ -101,7 +108,7 @@ function Perfil() {
                     </div>
                   </div>
                   <div className="form-row">
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-6 col-sm-12">
                       <label for="birthdate">Birthdate</label>
                       <input
                         type="text"
@@ -110,7 +117,7 @@ function Perfil() {
                         placeholder="04/09/1996"
                       ></input>
                     </div>
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-6 col-sm-12">
                       <label for="gender">Gender</label>
                       <select className="form-control" id="gender">
                         <option>Male</option>
@@ -124,10 +131,10 @@ function Perfil() {
                 </div>
               </form>
             </div>
-            <div className="col-md-5 px-5 py-2">
+            <div className="col-md-5 col-sm-12 px-5 py-2">
               <form>
                 <div className="form-row border-bottom">
-                  <div className="form-group col-md-12">
+                  <div className="form-group col-md-12 col-sm-12">
                     <label for="availableDays">Available Days</label>
                     <select className="form-control" id="availableDays">
                       <option>Monday</option>
@@ -215,7 +222,7 @@ function Perfil() {
                         </select>
                       </div>
                     </div>
-                    <div className="col-md-3 mt-1">
+                    <div className="col-md-3 mt-2 mb-2 text-center">
                       <div className="custom-control custom-switch">
                         <input
                           type="checkbox"
