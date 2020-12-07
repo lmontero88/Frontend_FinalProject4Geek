@@ -8,7 +8,7 @@ function Sidebar() {
 
                 <Link exact to="/" className="sidebar-brand d-flex align-items-center justify-content-center">
                     <div className="sidebar-brand-icon rotate-n-15">
-                        <i className="fas fa-laugh-wink"></i>
+                        <i className="fas fa-basketball-ball"></i>
                     </div>
                     <div className="sidebar-brand-text mx-3">Match <sup>up</sup></div>
                 </Link>
@@ -17,7 +17,7 @@ function Sidebar() {
 
                 <NavLink className="nav-item" to="/match" activeClassName="active">
                     <div className="nav-link">
-                        <i className="fas fa-fw fa-tachometer-alt"></i>
+                        <i className="fas fa-user-friends"></i>
                         <span>Match</span>
                     </div>
                 </NavLink>
@@ -26,7 +26,7 @@ function Sidebar() {
 
                 <NavLink className="nav-item" to="/profesores" activeClassName="active">
                     <div className="nav-link">
-                        <i className="fas fa-fw fa-tachometer-alt"></i>
+                        <i class="fas fa-chalkboard-teacher"></i>
                         <span>Profesores</span>
                     </div>
                 </NavLink>
@@ -35,7 +35,7 @@ function Sidebar() {
 
                 <NavLink className="nav-item" to="/clasificados" activeClassName="active">
                     <div className="nav-link">
-                        <i className="fas fa-fw fa-tachometer-alt"></i>
+                        <i class="fas fa-shopping-cart"></i>
                         <span>Clasificados</span>
                     </div>
                 </NavLink>
