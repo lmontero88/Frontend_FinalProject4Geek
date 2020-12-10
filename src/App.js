@@ -26,7 +26,7 @@ function App() {
       setRefresh
     }}>
       {
-      !user ? (<PrivateRoutes />) : (<Cover />)
+      user ? (<PrivateRoutes />) : (<Cover />)
       }
       <ToastContainer
         position="top-center"
