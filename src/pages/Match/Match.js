@@ -33,17 +33,13 @@ const Match = () => {
         <form action="" onSubmit={enviarDatos}>
         <div className='row'>
           <div className='col-md-3'>
-
             <div className='col-md-4'>
               <div className="card" style={{ width: '12rem' }}>
-
                 <div className="card-body">
                   <h5 className="card-title">Filtros</h5>
                   <hr></hr>
                   <form>
-                    <span>
-                      Sexo
-                  </span>
+                    <span>Sexo</span>
                     <div className="form-check">
                       <input className="form-check-input" type="radio" name="exampleRadios" onChange={handleInputChange} id="exampleRadios1" value="option1" checked />
                       <label className="form-check-label" for="exampleRadios1">
@@ -54,13 +50,14 @@ const Match = () => {
                       <input className="form-check-input" type="radio" name="exampleRadios" onChange={handleInputChange} id="exampleRadios2" value="option2" />
                       <label className="form-check-label" for="exampleRadios2">
                         Masculino
-                        </label>
+                      </label>
                     </div>
                     <label>Edad</label>
-                    <div className='row'>
-
+                    <div className="row">
                       <div className="col-auto">
-                        <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                        <label class="sr-only" for="inlineFormInputGroup">
+                          Username
+                        </label>
                         <div className="input-group mb-2">
                           <div className="input-group-prepend">
                             <div className="input-group-text">desde</div>
@@ -70,7 +67,9 @@ const Match = () => {
                       </div>
 
                       <div className="col-auto">
-                        <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                        <label class="sr-only" for="inlineFormInputGroup">
+                          Username
+                        </label>
                         <div className="input-group mb-2">
                           <div className="input-group-prepend">
                             <div className="input-group-text">hasta</div>
@@ -81,8 +80,11 @@ const Match = () => {
                     </div>
 
                     <div>
-                      <label for='deporte'>Deporte</label>
-                      <select class="custom-select custom-select-sm mb-1" id='deporte'>
+                      <label for="deporte">Deporte</label>
+                      <select
+                        class="custom-select custom-select-sm mb-1"
+                        id="deporte"
+                      >
                         <option selected>Open this select menu</option>
                         <option>Soccer</option>
                         <option>Basketball</option>
@@ -93,8 +95,11 @@ const Match = () => {
                       </select>
                     </div>
                     <div>
-                      <label for='experiencia'>Experiencia</label>
-                      <select class="custom-select custom-select-sm mb-1" id='experiencia'>
+                      <label for="experiencia">Experiencia</label>
+                      <select
+                        class="custom-select custom-select-sm mb-1"
+                        id="experiencia"
+                      >
                         <option selected>Open this select menu</option>
                         <option>Principiante</option>
                         <option>Intermedio</option>
@@ -175,7 +180,9 @@ const Match = () => {
                               <option value="9">09hs</option>
                               <option value="10">10hs</option>
                               <option value="11">11hs</option>
-                              <option selected value="12">12hs</option>
+                              <option selected value="12">
+                                12hs
+                              </option>
                               <option value="13">13hs</option>
                               <option value="14">14hs</option>
                               <option value="15">15hs</option>
@@ -190,7 +197,6 @@ const Match = () => {
                             </select>
                           </div>
                         </div>
-
                       </div>
                     </div>
 
@@ -198,9 +204,7 @@ const Match = () => {
                   </form>
                 </div>
               </div>
-
             </div>
-
           </div>
           <div className='col-md-9'>
             <div className='row d-flex justify-content-around'>
@@ -218,8 +222,8 @@ const Match = () => {
       </div>
       </Fragment>
     </MainLayout>
-  )
-}
+  );
+};
 
 export default Match;
 
