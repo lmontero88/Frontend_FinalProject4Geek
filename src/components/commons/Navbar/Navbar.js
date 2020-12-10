@@ -3,6 +3,7 @@ import useAuth from "../../../hooks/useAuth";
 import { logout } from "../../../services/authService";
 import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
+import { getUser } from "../../../services/authService";
 
 function Navbar() {
   const { setRefresh } = useAuth();
@@ -27,12 +28,12 @@ function Navbar() {
             aria-expanded="false"
           >
             <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-              Hi, Tod@s
+              Hi, {getUser() ? getUser().firstName : null}
             </span>
             <img
               className="img-profile rounded-circle"
-              src="https://place-hold.it/150"
-              alt="profileImage"
+              src="https://place-hold.it/100"
+              alt="Profile"
             />
           </div>
           <div
@@ -54,7 +55,7 @@ function Navbar() {
             <div className="dropdown-divider"></div>
             <button className="dropdown-item" onClick={handleLogout}>
               <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-              Cerrar Sección
+              Cerrar Sesión
             </button>
           </div>
         </li>
