@@ -18,13 +18,16 @@ function App() {
 
   if (!loadUser) return null;
 
+  
+
   return (
     <AuthContext.Provider value={{
       user,
-      setRefresh
+      setRefresh,
+      
     }}>
       {
-        !user ? (<PrivateRoutes />) : (<Cover />)
+        user ? (<PrivateRoutes />) : (<Cover />)
       }
       <ToastContainer
         position="top-center"

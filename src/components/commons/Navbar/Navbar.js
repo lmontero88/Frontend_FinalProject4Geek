@@ -1,6 +1,6 @@
 import React from 'react'
 import useAuth from '../../../hooks/useAuth';
-import { logout } from '../../../services/authService';
+import { logout, getUser } from '../../../services/authService';
 import { toast } from 'react-toastify';
 import { NavLink } from 'react-router-dom'
 
@@ -26,7 +26,7 @@ function Navbar() {
                 <li className="nav-item dropdown no-arrow">
                     <div className="nav-link dropdown-toggle" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span className="mr-2 d-none d-lg-inline text-gray-600 small">Hi, Tod@s</span>
+                        <span className="mr-2 d-none d-lg-inline text-gray-600 small">Hi, {getUser().firstName}</span>
                         <img className="img-profile rounded-circle" src="https://place-hold.it/100" alt='Profile'/>
                     </div>
                     <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"

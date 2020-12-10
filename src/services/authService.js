@@ -58,3 +58,29 @@ export function getUser() {
   return decode_token;
 }
 
+export function register(registerData) {
+  const url = `${API_URL}/users`;
+
+  const data = {
+    ...registerData,
+  };
+
+  const params = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  };
+
+  return fetch(url, params)
+    .then(response => {
+      return response.json();
+    })
+    .then(result => {
+      return result;
+    })
+    .catch(err => {
+      return err;
+    });
+}
