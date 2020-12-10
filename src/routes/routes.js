@@ -9,6 +9,7 @@ import MisPublicaciones from '../pages/MisPublicaciones';
 import FavJugadores from '../pages/Favoritos/Jugadores/FavJugadores';
 import FavClasificados from '../pages/Favoritos/Clasificados/FavClasificados';
 import FavProfesores from '../pages/Favoritos/Profesores/FavProfesores';
+import EditarPerfil from '../pages/EditarPerfil/EditarPerfil';
 
 const routes = [
   {
@@ -35,6 +36,11 @@ const routes = [
     path: '/perfil',
     exact: false,
     page: Perfil
+  },
+  {
+    path: '/editar_perfil',
+    exact: false,
+    page: EditarPerfil
   },
   {
     path: '/mis_match',
