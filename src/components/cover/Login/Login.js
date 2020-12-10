@@ -48,9 +48,9 @@ const Login = (props) => {
   };
 
   return (
-    <div className="row inline-block d-block p-2 ">
+    <div className="row w-50 p-2">
       <article className="card-body card">
-        <h4 className="card-title text-center mb-4 mt-1 ">Iniciar sesión</h4>
+        <h4 className="card-title text-center mb-4 mt-1">Iniciar sesión</h4>
         <hr />
         <form onSubmit={handleSubmit} onChange={handleOnChange}>
           <div className="form-group">

@@ -6,7 +6,7 @@ import "./Cover.scss";
 
 const Cover = () => {
   return (
-    <div className="cover-container">
+    <div className="container-fluid">
       <div className="row">
         
           <div className="left-container">

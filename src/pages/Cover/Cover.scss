@@ -1,8 +1,6 @@
-.cover-container {
-  min-width: 100vw;
-  min-height: 100vh;
-  display: block;
+.container-fluid {
   flex-direction: row;
+  padding: 0;
 
   .left-container {
     background-color: #FFCB77;
