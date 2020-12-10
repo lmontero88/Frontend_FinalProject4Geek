@@ -7,6 +7,7 @@ import { isEmailValid } from '../../../utils/validators';
 import Loading from '../../commons/Loading/Loading';
 import Register from '../Register/Register';
 import Recuperar from '../Recuperar/Recuperar'
+import './Login.scss';
 
 const Login = (props) => {
   const { setRefresh } = useAuth();
@@ -47,9 +48,9 @@ const Login = (props) => {
   };
 
   return (
-    <div className="card w-50">
-      <article className="card-body">
-        <h4 className="card-title text-center mb-4 mt-1">Iniciar sesión</h4>
+    <div className="row inline-block d-block p-2 ">
+      <article className="card-body card">
+        <h4 className="card-title text-center mb-4 mt-1 ">Iniciar sesión</h4>
         <hr />
         <form onSubmit={handleSubmit} onChange={handleOnChange}>
           <div className="form-group">

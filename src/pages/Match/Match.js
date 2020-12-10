@@ -1,17 +1,41 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 import MainLayout from '../../layouts/MainLayout';
 import UserCard from '../../components/commons/UserCard/UserCard';
+import './Match.scss'
 
 const Match = () => {
+  const [datos, setDatos] = useState({
+    exampleRadios: '',
+    desde:'',
+    hasta:''
+
+  })
+
+  const handleInputChange = (event) => {
+    console.log(event.target.value)
+    setDatos({
+      ...datos,
+      [event.target.name] : event.target.value
+    })
+  }
+  const enviarDatos = (event) =>{
+    event.preventDefault();
+    console.log(datos.exampleRadios + ' ' + datos.desde + ' ' + datos.hasta)
+  }
+  let usuarios = [{nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"20:00 a 22:00"}, {nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"20:00 a 22:00"}, {nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"20:00 a 22:00"},]
+
+
+  
   return (
     <MainLayout>
-
+      <Fragment>
       <div className='container col-md-12'>
+        <form action="" onSubmit={enviarDatos}>
         <div className='row'>
           <div className='col-md-3'>
 
             <div className='col-md-4'>
-              <div className="card" style={{ width: '20rem' }}>
+              <div className="card" style={{ width: '12rem' }}>
 
                 <div className="card-body">
                   <h5 className="card-title">Filtros</h5>
@@ -21,13 +45,13 @@ const Match = () => {
                       Sexo
                   </span>
                     <div className="form-check">
-                      <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked />
+                      <input className="form-check-input" type="radio" name="exampleRadios" onChange={handleInputChange} id="exampleRadios1" value="option1" checked />
                       <label className="form-check-label" for="exampleRadios1">
                         Femenino
                       </label>
                     </div>
                     <div className="form-check">
-                      <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                      <input className="form-check-input" type="radio" name="exampleRadios" onChange={handleInputChange} id="exampleRadios2" value="option2" />
                       <label className="form-check-label" for="exampleRadios2">
                         Masculino
                         </label>
@@ -41,7 +65,7 @@ const Match = () => {
                           <div className="input-group-prepend">
                             <div className="input-group-text">desde</div>
                           </div>
-                          <input type="number" className="form-control" id="inlineFormInputGroup" placeholder="Username" />
+                          <input type="number" className="form-control" name="desde" id="desde" placeholder="0" />
                         </div>
                       </div>
 
@@ -51,30 +75,9 @@ const Match = () => {
                           <div className="input-group-prepend">
                             <div className="input-group-text">hasta</div>
                           </div>
-                          <input type="number" className="form-control" id="inlineFormInputGroup" placeholder="Username" />
+                          <input type="number" className="form-control" name="hasta" id="hasta" placeholder="0" />
                         </div>
                       </div>
-                    </div>
-
-
-
-                    <div>
-                      <label for='region'>Región</label>
-                      <select class="custom-select custom-select-sm mb-1" id='region'>
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label for='comuna'>Comuna</label>
-                      <select class="custom-select custom-select-sm mb-1" id='comuna'>
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
                     </div>
 
                     <div>
@@ -93,9 +96,9 @@ const Match = () => {
                       <label for='experiencia'>Experiencia</label>
                       <select class="custom-select custom-select-sm mb-1" id='experiencia'>
                         <option selected>Open this select menu</option>
-                        <option>Beginner</option>
-                        <option>Intermediate</option>
-                        <option>Advanced</option>
+                        <option>Principiante</option>
+                        <option>Intermedio</option>
+                        <option>Avanzado</option>
                       </select>
                     </div>
                     <hr></hr>
@@ -104,13 +107,13 @@ const Match = () => {
                       <div className="form-group col-md-12">
                         <label for="availableDays">Available Days</label>
                         <select className="form-control" id="availableDays">
-                          <option>Monday</option>
-                          <option>Tuesday</option>
-                          <option>Wednesday</option>
-                          <option>Thursday</option>
-                          <option>Friday</option>
-                          <option>Saturday</option>
-                          <option>Sunday</option>
+                          <option>Lunes</option>
+                          <option>Martes</option>
+                          <option>Miercoles</option>
+                          <option>Jueves</option>
+                          <option>Viernes</option>
+                          <option>Sábado</option>
+                          <option>Domingo</option>
                         </select>
                       </div>
                       <div className="form-row ">
@@ -121,12 +124,12 @@ const Match = () => {
                           <div className="input-group mb-3 ml-1 mr-3">
                             <div className="input-group-prepend">
                               <label className="input-group-text" for="fromHour">
-                                From
+                                desde
                              </label>
                             </div>
                             <select className="custom-select" id="fromHour">
                               <option selected value="0">
-                                00hs
+                                00
                           </option>
                               <option value="1">01hs</option>
                               <option value="2">02hs</option>
@@ -156,10 +159,10 @@ const Match = () => {
                           <div className="input-group mb-3">
                             <div className="input-group-prepend">
                               <label className="input-group-text" for="fromHour">
-                                To
+                                hasta
                           </label>
                             </div>
-                            <select className="custom-select" id="fromHour">
+                            <select className="custom-select" id="toHour">
                               <option value="0">00hs</option>
                               <option value="1">01hs</option>
                               <option value="2">02hs</option>
@@ -191,7 +194,7 @@ const Match = () => {
                       </div>
                     </div>
 
-                    <div className="btn btn-primary mt-3">Filtrar</div>
+                    <button className="btn btn-secondary mt-3" onClick="" type="submit">Filtrar</button>
                   </form>
                 </div>
               </div>
@@ -201,19 +204,50 @@ const Match = () => {
           </div>
           <div className='col-md-9'>
             <div className='row d-flex justify-content-around'>
-              <UserCard/>
-              <UserCard/>
-              <UserCard/>
-              <UserCard/>
-              <UserCard/>
-              <UserCard/>
+              {
+                usuarios.map((elemento, index, arr) =>{
+
+                  return <UserCard nombre={elemento.nombre} edad={elemento.edad} contacto={elemento.contacto} horarios={elemento.horarios} key={index}/>
+                })
+              }
+              
             </div>
           </div>
         </div>
-
+        </form>
       </div>
+      </Fragment>
     </MainLayout>
   )
 }
 
 export default Match;
+
+//let resultados;
+//let exampleradios1,exampleRadios2,desde,hasta,region,comuna,deporte,experiencia,availableDays,fromHour,toHour; // variables Globales
+//
+//function obtenerDatos(){
+//  exampleradios1 = document.getElementById("exampleradios1").value;
+//  exampleRadios2 = document.getElementById("exampleRadios2").value;
+//  desde = document.getElementById("desde").value;
+//  hasta = document.getElementById("hasta").value;
+//  region = document.getElementById("region").value;
+//  comuna = document.getElementById("comuna").value;
+// deporte = document.getElementById("deporte").value;
+// experiencia = document.getElementById("experiencia").value;
+// availableDays = document.getElementById("availableDays").value;
+// fromHour = document.getElementById("fromHour").value;
+// toHour = document.getElementById("toHour").value;
+//
+//    let r = [exampleradios1, exampleRadios2, desde, hasta, region, comuna, deporte, experiencia, availableDays, fromHour, toHour];
+//    return r;
+//}
+//
+//let input = document.getElementsByTagName("input");
+//let i
+//for (i=0; i<input.length; i++) {
+// input[i].addEventListener("change",  function(){
+//  resultados = obtenerDatos();
+//  console.log(resultados);
+// });
+//};

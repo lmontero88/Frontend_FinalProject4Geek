@@ -1,7 +1,7 @@
 .cover-container {
   min-width: 100vw;
   min-height: 100vh;
-  display: flex;
+  display: block;
   flex-direction: row;
 
   .left-container {
@@ -11,6 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-right: 0px;
   }
 
   .right-container {
@@ -19,5 +20,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-left: 0px;
   }
 }

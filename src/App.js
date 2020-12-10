@@ -5,6 +5,7 @@ import PrivateRoutes from './routes/PrivateRoutes';
 import { getUser } from './services/authService';
 import { AuthContext } from './utils/contexts';
 
+
 function App() {
   const [user, setUser] = useState(null);
   const [refresh, setRefresh] = useState(false);
@@ -18,13 +19,14 @@ function App() {
 
   if (!loadUser) return null;
 
+  
   return (
     <AuthContext.Provider value={{
       user,
       setRefresh
     }}>
       {
-        !user ? (<PrivateRoutes />) : (<Cover />)
+      !user ? (<PrivateRoutes />) : (<Cover />)
       }
       <ToastContainer
         position="top-center"
