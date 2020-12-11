@@ -18,7 +18,7 @@ function Sidebar() {
                 <NavLink className="nav-item" to="/match" activeClassName="active">
                     <div className="nav-link">
                         <i className="fas fa-user-friends"></i>
-                        <span>Match</span>
+                        <span>Jugadores</span>
                     </div>
                 </NavLink>
 

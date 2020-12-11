@@ -6,8 +6,6 @@ import Post from '../../components/commons/Post/Post';
 const Home = () => {
   return (
     <MainLayout>
-      <h1>Home</h1>
-    
       <Post />
       <Post />
     </MainLayout>
