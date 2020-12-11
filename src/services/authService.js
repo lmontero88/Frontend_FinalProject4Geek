@@ -58,7 +58,7 @@ export function getUser() {
   return decode_token;
 }
 
-export function register(registerData) {
+export function registerUser(registerData) {
   const url = `${API_URL}/users`;
 
   const data = {
@@ -86,6 +86,51 @@ export function register(registerData) {
     });
 }
 
+export function getUserData() {
+  const url = `${API_URL}/users`;
+
+  const params = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  return fetch(url, params)
+    .then(response => {
+      return response.json();
+    })
+    .then(result => {
+      return result;
+    })
+    .catch(err => {
+      return err;
+    });
+}
+
 export function editProfile(userData) {
-  return "hola mundo";
+  const url = `${API_URL}/edit`;
+
+  const data = {
+    ...userData,
+  };
+
+  const params = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  };
+
+  return fetch(url, params)
+    .then(response => {
+      return response.json();
+    })
+    .then(result => {
+      return result;
+    })
+    .catch(err => {
+      return err;
+    });
 }

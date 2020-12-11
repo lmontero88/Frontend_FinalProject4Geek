@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { toast } from "react-toastify";
-import useAuth from '../../../hooks/useAuth';
-import { login } from '../../../services/authService';
-import { TOKEN_KEY } from '../../../utils/constants';
-import { isEmailValid } from '../../../utils/validators';
-import Loading from '../../commons/Loading/Loading';
-import Register from '../Register/Register';
-import Recuperar from '../Recuperar/Recuperar'
-import './Login.scss';
+import useAuth from "../../../hooks/useAuth";
+import { login } from "../../../services/authService";
+import { TOKEN_KEY } from "../../../utils/constants";
+import { isEmailValid } from "../../../utils/validators";
+import Loading from "../../commons/Loading/Loading";
+import Register from "../Register/Register";
+import Recuperar from "../Recuperar/Recuperar";
+import "./Login.scss";
 
 const Login = (props) => {
   const { setRefresh } = useAuth();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
 
   const handleSubmit = (e) => {
@@ -22,12 +22,11 @@ const Login = (props) => {
 
     if (!isEmailValid(formData.email)) {
       toast.warn("Email es invalido");
-    }
-    else {
+    } else {
       setLoading(true);
       login(formData)
-        .then(response => {
-          if (response.status === 'fail') {
+        .then((response) => {
+          if (response.status === "fail") {
             toast.warn(response.message);
           } else {
             localStorage.setItem(TOKEN_KEY, response.Authorization);
@@ -56,38 +55,68 @@ const Login = (props) => {
           <div className="form-group">
             <div className="input-group">
               <div className="input-group-prepend">
-                <span className="input-group-text"> <i className="fa fa-user"></i> </span>
+                <span className="input-group-text">
+                  {" "}
+                  <i className="fa fa-user"></i>{" "}
+                </span>
               </div>
-              <input name="email" className="form-control" placeholder="Correo electrónico" type="email" defaultValue={formData.email} />
+              <input
+                name="email"
+                className="form-control"
+                placeholder="Correo electrónico"
+                type="email"
+                defaultValue={formData.email}
+              />
             </div>
           </div>
           <div className="form-group">
             <div className="input-group">
               <div className="input-group-prepend">
-                <span className="input-group-text"> <i className="fa fa-lock"></i> </span>
+                <span className="input-group-text">
+                  {" "}
+                  <i className="fa fa-lock"></i>{" "}
+                </span>
               </div>
-              <input name="password" className="form-control" placeholder="******" type="password" defaultValue={formData.password} />
+              <input
+                name="password"
+                className="form-control"
+                placeholder="******"
+                type="password"
+                defaultValue={formData.password}
+              />
             </div>
           </div>
           <div className="form-group d-flex justify-content-center">
-            {
-              !loading
-                ? <button type="submit" className="btn btn-primary btn-block">Entrar</button>
-                : <Loading />
-            }
+            {!loading ? (
+              <button type="submit" className="btn btn-primary btn-block">
+                Entrar
+              </button>
+            ) : (
+              <Loading />
+            )}
           </div>
-          <p className="text-center"><a href="#" data-toggle="modal" data-target="#modalRecover" className="btn">¿Olvidaste tu contraseña?</a></p>
-          <Recuperar />        
+          <div className="form-group text-center">
+            <span id="recover" data-toggle="modal" data-target="#modalRecover">
+              ¿Olvidaste tu contraseña?
+            </span>
+            <Recuperar />
+          </div>
         </form>
         <hr />
 
         <div className="container d-flex justify-content-center">
-          <button className="btn btn-success w-75 btn-agua" data-toggle="modal" data-target="#modalRegister">Registrarse</button>
+          <button
+            className="btn btn-success w-75 btn-agua"
+            data-toggle="modal"
+            data-target="#modalRegister"
+          >
+            Registrarse
+          </button>
         </div>
         <Register />
       </article>
     </div>
-  )
-}
+  );
+};
 
 export default Login;

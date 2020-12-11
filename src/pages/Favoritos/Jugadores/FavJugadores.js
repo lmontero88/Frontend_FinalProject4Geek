@@ -1,12 +1,11 @@
 import React from 'react'
 import MainLayout from '../../../layouts/MainLayout'
+import ComingSoon from '../../../components/commons/ComingSoon/ComingSoon';
 
 function FavJugadores() {
     return (
         <MainLayout>
-        <h1>
-             Favorito de jugadores.
-        </h1> 
+            <ComingSoon />
         </MainLayout>
     )
 }
