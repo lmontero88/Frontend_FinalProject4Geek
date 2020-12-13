@@ -72,7 +72,7 @@ const Register = () => {
                     <form className="mx-1" onSubmit={handleSubmit}>
                       <div className="form-group row">
                         <div className="col-sm-6 mb-3 mb-sm-0">
-                          <label for="exampleFirstName">Nombre</label>
+                          <label htmlFor="exampleFirstName">Nombre</label>
                           <input
                             type="text"
                             name="firstName"
@@ -83,7 +83,7 @@ const Register = () => {
                           />
                         </div>
                         <div className="col-sm-6">
-                          <label for="exampleLastName">Apellido</label>
+                          <label htmlFor="exampleLastName">Apellido</label>
                           <input
                             type="text"
                             name="lastName"
@@ -95,7 +95,7 @@ const Register = () => {
                         </div>
                       </div>
                       <div className="form-group">
-                        <label for="exampleInputEmail">
+                        <label htmlFor="exampleInputEmail">
                           Correo Electronico
                         </label>
                         <input
@@ -109,7 +109,7 @@ const Register = () => {
                       </div>
                       <div className="form-group row">
                         <div className="col-sm-6 mb-3 mb-sm-0">
-                          <label for="exampleInputPassword">Contraseña</label>
+                          <label htmlFor="exampleInputPassword">Contraseña</label>
                           <input
                             type="password"
                             name="password"
@@ -120,7 +120,7 @@ const Register = () => {
                           />
                         </div>
                         <div className="col-sm-6">
-                          <label for="exampleInputRepeatPassword">
+                          <label htmlFor="exampleInputRepeatPassword">
                             Repetir Contraseña
                           </label>
                           <input
@@ -135,7 +135,7 @@ const Register = () => {
                       </div>
                       <div className="form-group row">
                         <div className="col-sm-6">
-                          <label for="exampleInputBirthdate">
+                          <label htmlFor="exampleInputBirthdate">
                             Fecha de Nacimiento
                           </label>
                           <input
@@ -148,7 +148,7 @@ const Register = () => {
                           />
                         </div>
                         <div className="col-sm-6">
-                          <label for="exampleInputGender">
+                          <label htmlFor="exampleInputGender">
                             ¿Cuál es tu género?
                           </label>
                           <select
@@ -171,7 +171,7 @@ const Register = () => {
                             value={register.isTeacher}
                             id="exampleCheckIsTeacher"
                           />
-                          <label className="form-check-label" for="exampleCheckIsTeacher">
+                          <label className="form-check-label" htmlFor="exampleCheckIsTeacher">
                             ¿Eres Profesor?
                           </label>
                         </div>

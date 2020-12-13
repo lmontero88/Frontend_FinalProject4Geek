@@ -23,7 +23,7 @@ const EditarPerfil = () => {
         <form>
           <div className="form-row">
             <div className="form-group col-md-6 col-sm-12">
-              <label for="firstName">First Name</label>
+              <label htmlFor="firstName">First Name</label>
               <input
                 type="text"
                 name="firstName"
@@ -36,7 +36,7 @@ const EditarPerfil = () => {
               />
             </div>
             <div className="form-group col-md-6 col-sm-12">
-              <label for="lastName">Last Name</label>
+              <label htmlFor="lastName">Last Name</label>
               <input
                 type="text"
                 name="lastName"
@@ -51,7 +51,7 @@ const EditarPerfil = () => {
           </div>
           <div className="form-row">
             <div className="form-group col-md-12 col-sm-12">
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="text"
                 name="email"
@@ -66,7 +66,7 @@ const EditarPerfil = () => {
           </div>
           <div className="form-row">
             <div className="form-group col-md-12 col-sm-12">
-              <label for="phone">Phone Number</label>
+              <label htmlFor="phone">Phone Number</label>
               <input
                 type="text"
                 name="phone"
@@ -79,7 +79,7 @@ const EditarPerfil = () => {
             </div>
             {/*
             <div className="form-group col-md-6 col-sm-12">
-              <label for="password">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="text"
                 className="form-control"
@@ -91,7 +91,7 @@ const EditarPerfil = () => {
           </div>
           <div className="form-row">
             <div className="form-group col-md-12 col-sm-12">
-              <label for="birthdate">Birthdate</label>
+              <label htmlFor="birthdate">Birthdate</label>
               <input
                 type="text"
                 name="birthdate"
@@ -104,14 +104,14 @@ const EditarPerfil = () => {
               ></input>
             </div>
             {/*<div className="form-group col-md-6 col-sm-12">
-              <label for="gender">Gender</label>
+              <label htmlFor="gender">Gender</label>
               <select className="form-control" id="gender">
                 <option>Male</option>
                 <option>Female</option>
               </select>
           </div>*/}
             <div className="form-group col-md-12 col-sm-12">
-              <label for="bio">Biografia</label>
+              <label htmlFor="bio">Biografia</label>
               <input
                 type="text"
                 name="bio"
