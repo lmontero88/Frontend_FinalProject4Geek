@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import useAuth from "../../../hooks/useAuth";
+import { registerUser } from "../../../services/authService";
+import Loading from "../../commons/Loading/Loading";
 import {
   isFirstNameValid,
   isLastNameValid,
   isEmailValid,
   isPasswordValid,
 } from "../../../utils/validators";
+import { login } from "../../../services/authService";
+import { TOKEN_KEY } from "../../../utils/constants";
 
-const Register = () => {
+const Register = (props) => {
+  const { setRefresh } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [register, setRegister] = useState({
     firstName: "",
     lastName: "",
@@ -29,23 +36,34 @@ const Register = () => {
 
     if (!isFirstNameValid(register.firstName)) {
       toast.warn("El nombre solo debe contener letras.");
-    }
-    if (!isLastNameValid(register.lastName)) {
+    } else if (!isLastNameValid(register.lastName)) {
       toast.warn("El apellido solo debe contener letras.");
-    }
-    if (!isEmailValid(register.email)) {
-      toast.warn("El email es incorrecto. Ejemplo: (user123@matchUp.com)");
-    }
-    if (!isPasswordValid(register.password)) {
+    } else if (!isEmailValid(register.email)) {
+      toast.warn("El email es invalido.");
+    } else if (!isPasswordValid(register.password)) {
       toast.warn(
         "La contraseña debe contener entre 6 y 12 caracteres y debe tener al menos 1 mayuscula, 1 minuscula y 1 numero."
       );
-    }
-    if (register.password !== register.repeatPassword) {
+    } else if (register.password !== register.repeatPassword) {
       toast.warn("Las contraseñas no coinciden.");
-    }
-    if (register.birthdate === "") {
+    } else if (register.birthdate === "") {
       toast.warn("Por favor, seleccione una fecha de nacimiento.");
+    } else {
+      setLoading(true);
+      registerUser(register)
+        .then((response) => {
+          if (response.status === "fail") {
+            toast.warn(response.message);
+          } else {
+            localStorage.setItem(TOKEN_KEY, response.Authorization);
+            setLoading(false);
+            setRefresh(true);
+          }
+        })
+        .catch(() => {
+          setLoading(false);
+          toast.error("Error del servidor, inténtelo más tarde");
+        });
     }
   };
 
@@ -69,7 +87,11 @@ const Register = () => {
                         ¡Crea una cuenta!
                       </h1>
                     </div>
-                    <form className="mx-1" onSubmit={handleSubmit}>
+                    <form
+                      className="mx-1"
+                      onSubmit={handleSubmit}
+                      onChange={handleChange}
+                    >
                       <div className="form-group row">
                         <div className="col-sm-6 mb-3 mb-sm-0">
                           <label htmlFor="exampleFirstName">Nombre</label>
@@ -78,8 +100,7 @@ const Register = () => {
                             name="firstName"
                             className="form-control"
                             id="exampleFirstName"
-                            value={register.firstName}
-                            onChange={handleChange}
+                            defaultValue={register.firstName}
                           />
                         </div>
                         <div className="col-sm-6">
@@ -89,8 +110,7 @@ const Register = () => {
                             name="lastName"
                             className="form-control"
                             id="exampleLastName"
-                            value={register.lastName}
-                            onChange={handleChange}
+                            defaultValue={register.lastName}
                           />
                         </div>
                       </div>
@@ -103,8 +123,8 @@ const Register = () => {
                           name="email"
                           className="form-control"
                           id="exampleInputEmail"
-                          value={register.email}
-                          onChange={handleChange}
+                          placeholder="example@matchup.com"
+                          defaultValue={register.email}
                         />
                       </div>
                       <div className="form-group row">
@@ -115,8 +135,8 @@ const Register = () => {
                             name="password"
                             className="form-control"
                             id="exampleInputPassword"
-                            value={register.password}
-                            onChange={handleChange}
+                            placeholder="**********"
+                            defaultValue={register.password}
                           />
                         </div>
                         <div className="col-sm-6">
@@ -128,8 +148,8 @@ const Register = () => {
                             name="repeatPassword"
                             className="form-control"
                             id="exampleInputRepeatPassword"
-                            value={register.repeatPassword}
-                            onChange={handleChange}
+                            placeholder="**********"
+                            defaultValue={register.repeatPassword}
                           />
                         </div>
                       </div>
@@ -143,8 +163,7 @@ const Register = () => {
                             name="birthdate"
                             className="form-control"
                             id="exampleInputBirthdate"
-                            value={register.birthdate}
-                            onChange={handleChange}
+                            defaultValue={register.birthdate}
                           />
                         </div>
                         <div className="col-sm-6">
@@ -155,8 +174,7 @@ const Register = () => {
                             name="gender"
                             className="form-control"
                             id="exampleInputGender"
-                            value={register.gender}
-                            onChange={handleChange}
+                            defaultValue={register.gender}
                           >
                             <option>Hombre</option>
                             <option>Mujer</option>
@@ -168,7 +186,7 @@ const Register = () => {
                           <input
                             className="form-check-input"
                             type="checkbox"
-                            value={register.isTeacher}
+                            defaultValue={register.isTeacher}
                             id="exampleCheckIsTeacher"
                           />
                           <label className="form-check-label" htmlFor="exampleCheckIsTeacher">
@@ -176,12 +194,18 @@ const Register = () => {
                           </label>
                         </div>
                       </div>
-                      <button
-                        href="login.html"
-                        className="btn btn-primary btn-block mt-4"
-                      >
-                        Registrarse
-                      </button>
+                      <div className="form-group">
+                        {!loading ? (
+                          <button
+                            type="submit"
+                            className="btn btn-primary btn-block mt-4"
+                          >
+                            Registrarse
+                          </button>
+                        ) : (
+                          <Loading />
+                        )}
+                      </div>
                     </form>
                     <hr />
 

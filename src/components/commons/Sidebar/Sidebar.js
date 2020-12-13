@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import './Sidebar.scss';
 
 function Sidebar() {
 
@@ -22,7 +23,7 @@ function Sidebar() {
 
                 <hr className="sidebar-divider my-0" />
 
-                <NavLink className="nav-item" to="/match" activeClassName="active">
+                <NavLink className="nav-item text-decoration-none" to="/match" activeClassName="active">
                     <div className="nav-link">
                         <i className="fas fa-user-friends"></i>
                         <span>Jugadores</span>
@@ -31,7 +32,7 @@ function Sidebar() {
 
                 <hr className="sidebar-divider" />
 
-                <NavLink className="nav-item" to="/profesores" activeClassName="active">
+                <NavLink className="nav-item text-decoration-none" to="/profesores" activeClassName="active">
                     <div className="nav-link">
                         <i className="fas fa-chalkboard-teacher"></i>
                         <span>Profesores</span>
@@ -40,7 +41,7 @@ function Sidebar() {
 
                 <hr className="sidebar-divider" />
 
-                <NavLink className="nav-item" to="/clasificados" activeClassName="active">
+                <NavLink className="nav-item text-decoration-none" to="/clasificados" activeClassName="active">
                     <div className="nav-link">
                         <i className="fas fa-shopping-cart"></i>
                         <span>Clasificados</span>
@@ -49,12 +50,12 @@ function Sidebar() {
 
                 <hr className="sidebar-divider" />
 
-                <li className="nav-item">
-                    <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                <li className="nav-item text-decoration-none" id="navFav">
+                    <p className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                         aria-expanded="true" aria-controls="collapseTwo">
                         <i className="fas fa-fw fa-cog"></i>
                         <span>Favoritos</span>
-                    </a>
+                    </p>
                     <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <NavLink className="collapse-item" to="/favorito/jugadores">Jugadores</NavLink>
