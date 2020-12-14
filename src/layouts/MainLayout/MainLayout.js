@@ -11,7 +11,7 @@ function MainLayout({ children }) {
             <div id="content-wrapper" class="d-flex flex-column">
                 <div id="content" >
                     <Navbar />
-                    <div class="container-fluid">
+                    <div className="container-fluid">
                     {children}
                     </div>
                 </div>

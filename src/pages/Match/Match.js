@@ -22,7 +22,7 @@ const Match = () => {
     event.preventDefault();
     console.log(datos.exampleRadios + ' ' + datos.desde + ' ' + datos.hasta)
   }
-  let usuarios = [{nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"20:00 a 22:00"}, {nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"20:00 a 22:00"}, {nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"20:00 a 22:00"},]
+  let usuarios = [{nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"20:00 a 22:00"}, {nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"20:00 a 22:00"}, {nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"20:00 a 22:00"}, {nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"20:00 a 22:00"}]
 
 
   
@@ -110,8 +110,9 @@ const Match = () => {
 
                     <div className="form-row border-bottom">
                       <div className="form-group col-md-12">
-                        <label for="availableDays">Available Days</label>
+                        <label for="availableDays">Días disponibles</label>
                         <select className="form-control" id="availableDays">
+                          <option>Selecciona un día</option>
                           <option>Lunes</option>
                           <option>Martes</option>
                           <option>Miercoles</option>

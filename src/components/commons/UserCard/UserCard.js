@@ -5,7 +5,7 @@ function UserCard(props) {
     return (
 
 
-        <div className="card pt-3 mb-2" style={{ width: '16rem' }}>
+        <div className="card pt-3 mb-2" style={{ width: '14rem' }}>
             <div className='d-flex justify-content-end mr-4'>
                 <i class="far fa-heart fa-2x cursor-pointer"></i>
             </div>

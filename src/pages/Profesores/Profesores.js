@@ -28,13 +28,13 @@ function Profesores() {
         <MainLayout>
           <Fragment>
 
-          <div className='container col-md-12'>
+      <div className='container col-md-12'>
         <form action="" onSubmit={enviarDatos}>
         <div className='row'>
           <div className='col-md-3'>
 
             <div className='col-md-4'>
-              <div className="card" style={{ width: '12rem' }}>
+              <div className="card" style={{ width: '8rem' }}>
 
                 <div className="card-body">
                   <h5 className="card-title">Filtros</h5>
@@ -104,8 +104,9 @@ function Profesores() {
 
                     <div className="form-row border-bottom">
                       <div className="form-group col-md-12">
-                        <label for="availableDays">Available Days</label>
+                        <label for="availableDays">Días disponibles</label>
                         <select className="form-control" id="availableDays">
+                          <option>Selecciona un día</option>
                           <option>Lunes</option>
                           <option>Martes</option>
                           <option>Miercoles</option>

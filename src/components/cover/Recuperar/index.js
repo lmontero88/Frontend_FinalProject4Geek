@@ -1,1 +1,1 @@
-export { default } from './Recuperación';
+export { default } from './Recuperar';

@@ -3,8 +3,8 @@ import { NavLink, Link } from 'react-router-dom'
 
 function Sidebar() {
     return (
-        <div>
-            <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sticky-top" id="accordionSidebar">
+        <>
+            <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <Link exact to="/" className="sidebar-brand d-flex align-items-center justify-content-center">
                     <div className="sidebar-brand-icon rotate-n-15">
@@ -67,7 +67,7 @@ function Sidebar() {
 
                 
             </ul>
-        </div>
+        </>
     )
 }
 

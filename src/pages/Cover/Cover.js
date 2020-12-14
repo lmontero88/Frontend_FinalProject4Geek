@@ -9,15 +9,15 @@ const Cover = () => {
     <div className="container-fluid">
       <div className="row">
         
-          <div className="left-container">
+          <div className="left-container col-md-6">
             <Welcome />
           </div>
           
           
-          <div className="right-container bg-primary">
+          <div className="right-container bg-primary col-md-6">
             <Login />
-          </div>
           <Register />
+          </div>
         
       </div>
     </div>

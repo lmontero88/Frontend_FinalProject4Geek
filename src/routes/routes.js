@@ -10,6 +10,7 @@ import FavJugadores from '../pages/Favoritos/Jugadores/FavJugadores';
 import FavClasificados from '../pages/Favoritos/Clasificados/FavClasificados';
 import FavProfesores from '../pages/Favoritos/Profesores/FavProfesores';
 import EditarPerfil from '../pages/EditarPerfil/EditarPerfil';
+import Recuperar from '../components/cover/Recuperar'
 
 const routes = [
   {
@@ -71,6 +72,8 @@ const routes = [
     path: '*',
     page: NotFound
   },
+
+  
 ]
 
 export default routes;
