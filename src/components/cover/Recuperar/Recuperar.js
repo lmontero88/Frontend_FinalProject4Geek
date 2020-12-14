@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-
-
+import React from "react";
 
 const Recuperar = () => {
   return (
@@ -57,6 +55,5 @@ const Recuperar = () => {
     </div>
   );
 };
-
 
 export default Recuperar;

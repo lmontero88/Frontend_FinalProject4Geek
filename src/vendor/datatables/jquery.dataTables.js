@@ -3258,7 +3258,7 @@
 	
 				if ( column.bSortable !== false ) {
 					cell
-						.attr( 'tabindex', oSettings.iTabIndex )
+						.attr( 'tabIndex', oSettings.iTabIndex )
 						.attr( 'aria-controls', oSettings.sTableId );
 	
 					_fnSortAttachListener( oSettings, column.nTh, i );
@@ -5313,7 +5313,7 @@
 		headerCopy = header.clone().prependTo( table );
 		headerTrgEls = header.find('tr'); // original header is in its own table
 		headerSrcEls = headerCopy.find('tr');
-		headerCopy.find('th, td').removeAttr('tabindex');
+		headerCopy.find('th, td').removeAttr('tabIndex');
 	
 	
 		/*
@@ -11293,9 +11293,9 @@
 	
 		/**
 		 * By default DataTables allows keyboard navigation of the table (sorting, paging,
-		 * and filtering) by adding a `tabindex` attribute to the required elements. This
+		 * and filtering) by adding a `tabIndex` attribute to the required elements. This
 		 * allows you to tab through the controls and press the enter key to activate them.
-		 * The tabindex is default 0, meaning that the tab follows the flow of the document.
+		 * The tabIndex is default 0, meaning that the tab follows the flow of the document.
 		 * You can overrule this using this parameter if you wish. Use a value of -1 to
 		 * disable built-in keyboard navigation.
 		 *  @type int
@@ -13863,7 +13863,7 @@
 		"sInstance": null,
 	
 		/**
-		 * tabindex attribute value that is added to DataTables control elements, allowing
+		 * tabIndex attribute value that is added to DataTables control elements, allowing
 		 * keyboard navigation of the table and its controls.
 		 */
 		"iTabIndex": 0,
@@ -14672,7 +14672,7 @@
 										'aria-controls': settings.sTableId,
 										'aria-label': aria[ button ],
 										'data-dt-idx': counter,
-										'tabindex': tabIndex,
+										'tabIndex': tabIndex,
 										'id': idx === 0 && typeof button === 'string' ?
 											settings.sTableId +'_'+ button :
 											null

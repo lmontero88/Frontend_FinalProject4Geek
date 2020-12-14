@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import useAuth from "../../../hooks/useAuth";
+import { registerUser } from "../../../services/authService";
+import Loading from "../../commons/Loading/Loading";
 import {
   isFirstNameValid,
   isLastNameValid,
   isEmailValid,
   isPasswordValid,
 } from "../../../utils/validators";
+import { login } from "../../../services/authService";
+import { TOKEN_KEY } from "../../../utils/constants";
 
-const Register = () => {
+const Register = (props) => {
+  const { setRefresh } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [register, setRegister] = useState({
     firstName: "",
     lastName: "",
@@ -26,26 +33,44 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
 
     if (!isFirstNameValid(register.firstName)) {
       toast.warn("El nombre solo debe contener letras.");
-    }
-    if (!isLastNameValid(register.lastName)) {
+    } else if (!isLastNameValid(register.lastName)) {
       toast.warn("El apellido solo debe contener letras.");
-    }
-    if (!isEmailValid(register.email)) {
-      toast.warn("El email es incorrecto. Ejemplo: (user123@matchUp.com)");
-    }
-    if (!isPasswordValid(register.password)) {
+    } else if (!isEmailValid(register.email)) {
+      toast.warn("El email es invalido.");
+    } else if (!isPasswordValid(register.password)) {
       toast.warn(
         "La contraseña debe contener entre 6 y 12 caracteres y debe tener al menos 1 mayuscula, 1 minuscula y 1 numero."
       );
-    }
-    if (register.password !== register.repeatPassword) {
+    } else if (register.password !== register.repeatPassword) {
       toast.warn("Las contraseñas no coinciden.");
-    }
-    if (register.birthdate === "") {
+    } else if (register.birthdate === "") {
       toast.warn("Por favor, seleccione una fecha de nacimiento.");
+    } else {
+      setLoading(true);
+      registerUser(register)
+        .then((response) => {
+          if (response.status === "fail") {
+            toast.warn(response.message);
+          } else {
+            localStorage.setItem(TOKEN_KEY, response.Authorization);
+            setLoading(false);
+            document.querySelector('body').classList.remove('modal-open');
+            document.querySelector('body').removeAttribute("style")
+            document.getElementsByClassName('modal-backdrop')[0].remove();
+            setRefresh(true);
+
+          }
+        })
+        .catch(() => {
+          setLoading(false);
+          document.querySelector('body').classList.remove('modal-open');
+          document.getElementsByClassName('modal-backdrop')[0].remove();
+          toast.error("Error del servidor, inténtelo más tarde");
+        });
     }
   };
 
@@ -69,33 +94,35 @@ const Register = () => {
                         ¡Crea una cuenta!
                       </h1>
                     </div>
-                    <form className="mx-1" onSubmit={handleSubmit}>
+                    <form
+                      className="mx-1"
+                      onSubmit={handleSubmit}
+                      onChange={handleChange}
+                    >
                       <div className="form-group row">
                         <div className="col-sm-6 mb-3 mb-sm-0">
-                          <label for="exampleFirstName">Nombre</label>
+                          <label htmlFor="exampleFirstName">Nombre</label>
                           <input
                             type="text"
                             name="firstName"
                             className="form-control"
                             id="exampleFirstName"
-                            value={register.firstName}
-                            onChange={handleChange}
+                            defaultValue={register.firstName}
                           />
                         </div>
                         <div className="col-sm-6">
-                          <label for="exampleLastName">Apellido</label>
+                          <label htmlFor="exampleLastName">Apellido</label>
                           <input
                             type="text"
                             name="lastName"
                             className="form-control"
                             id="exampleLastName"
-                            value={register.lastName}
-                            onChange={handleChange}
+                            defaultValue={register.lastName}
                           />
                         </div>
                       </div>
                       <div className="form-group">
-                        <label for="exampleInputEmail">
+                        <label htmlFor="exampleInputEmail">
                           Correo Electronico
                         </label>
                         <input
@@ -103,24 +130,24 @@ const Register = () => {
                           name="email"
                           className="form-control"
                           id="exampleInputEmail"
-                          value={register.email}
-                          onChange={handleChange}
+                          placeholder="example@matchup.com"
+                          defaultValue={register.email}
                         />
                       </div>
                       <div className="form-group row">
                         <div className="col-sm-6 mb-3 mb-sm-0">
-                          <label for="exampleInputPassword">Contraseña</label>
+                          <label htmlFor="exampleInputPassword">Contraseña</label>
                           <input
                             type="password"
                             name="password"
                             className="form-control"
                             id="exampleInputPassword"
-                            value={register.password}
-                            onChange={handleChange}
+                            placeholder="**********"
+                            defaultValue={register.password}
                           />
                         </div>
                         <div className="col-sm-6">
-                          <label for="exampleInputRepeatPassword">
+                          <label htmlFor="exampleInputRepeatPassword">
                             Repetir Contraseña
                           </label>
                           <input
@@ -128,14 +155,14 @@ const Register = () => {
                             name="repeatPassword"
                             className="form-control"
                             id="exampleInputRepeatPassword"
-                            value={register.repeatPassword}
-                            onChange={handleChange}
+                            placeholder="**********"
+                            defaultValue={register.repeatPassword}
                           />
                         </div>
                       </div>
                       <div className="form-group row">
                         <div className="col-sm-6">
-                          <label for="exampleInputBirthdate">
+                          <label htmlFor="exampleInputBirthdate">
                             Fecha de Nacimiento
                           </label>
                           <input
@@ -143,20 +170,18 @@ const Register = () => {
                             name="birthdate"
                             className="form-control"
                             id="exampleInputBirthdate"
-                            value={register.birthdate}
-                            onChange={handleChange}
+                            defaultValue={register.birthdate}
                           />
                         </div>
                         <div className="col-sm-6">
-                          <label for="exampleInputGender">
+                          <label htmlFor="exampleInputGender">
                             ¿Cuál es tu género?
                           </label>
                           <select
                             name="gender"
                             className="form-control"
                             id="exampleInputGender"
-                            value={register.gender}
-                            onChange={handleChange}
+                            defaultValue={register.gender}
                           >
                             <option>Hombre</option>
                             <option>Mujer</option>
@@ -168,20 +193,26 @@ const Register = () => {
                           <input
                             className="form-check-input"
                             type="checkbox"
-                            value={register.isTeacher}
+                            defaultValue={register.isTeacher}
                             id="exampleCheckIsTeacher"
                           />
-                          <label className="form-check-label" for="exampleCheckIsTeacher">
+                          <label className="form-check-label" htmlFor="exampleCheckIsTeacher">
                             ¿Eres Profesor?
                           </label>
                         </div>
                       </div>
-                      <button
-                        href="login.html"
-                        className="btn btn-primary btn-block mt-4"
-                      >
-                        Registrarse
-                      </button>
+                      <div className="form-group">
+                        {!loading ? (
+                          <button
+                            type="submit"
+                            className="btn btn-primary btn-block mt-4"
+                          >
+                            Registrarse
+                          </button>
+                        ) : (
+                          <Loading />
+                        )}
+                      </div>
                     </form>
                     <hr />
 

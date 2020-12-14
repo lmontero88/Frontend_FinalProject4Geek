@@ -44,7 +44,7 @@ const Perfil = () => {
                   <div
                     className="modal fade"
                     id="editImageModal"
-                    tabindex="-1"
+                    tabIndex="-1"
                     aria-labelledby="editImageModalLabel"
                     aria-hidden="true"
                   >
@@ -119,7 +119,7 @@ const Perfil = () => {
               <form>
                 <div className="form-row border-bottom">
                   <div className="form-group col-md-12 col-sm-12">
-                    <label for="availableDays">Dias Disponibles</label>
+                    <label htmlFor="availableDays">Dias Disponibles</label>
                     <select className="form-control" id="availableDays">
                       <option>Lunes</option>
                       <option>Martes</option>
@@ -131,12 +131,12 @@ const Perfil = () => {
                     </select>
                   </div>
                   <div className="form-group col-md-7">
-                    <label for="availableHours" className="ml-2">
+                    <label htmlFor="availableHours" className="ml-2">
                       Horario Disponible
                     </label>
                     <div className="input-group mb-3 ml-1">
                       <div className="input-group-prepend">
-                        <label className="input-group-text" for="hour">
+                        <label className="input-group-text" htmlFor="hour">
                           Hora
                         </label>
                       </div>
@@ -179,7 +179,7 @@ const Perfil = () => {
                       />
                       <label
                         className="custom-control-label"
-                        for="customSwitches"
+                        htmlFor="customSwitches"
                       >
                         Estado
                       </label>
@@ -189,14 +189,14 @@ const Perfil = () => {
               </form>
               <form>
                 <div className="form-row mt-4 ml-1">
-                  <label for="addSports">Agrega un Deporte</label>
+                  <label htmlFor="addSports">Agrega un Deporte</label>
                   <div className="col-md-12">
                     <div
                       className="form-row border rounded-lg pl-3 pr-5 pt-2"
                       id="addSports"
                     >
                       <div className="form-group col-md-5">
-                        <label for="sport">Deporte</label>
+                        <label htmlFor="sport">Deporte</label>
                         <select className="form-control" id="sport">
                           <option>Futbol</option>
                           <option>Basketball</option>
@@ -207,7 +207,7 @@ const Perfil = () => {
                         </select>
                       </div>
                       <div className="form-group col-md-5">
-                        <label for="level">Nivel</label>
+                        <label htmlFor="level">Nivel</label>
                         <select className="form-control" id="level">
                           <option>Principiante</option>
                           <option>Intermedio</option>

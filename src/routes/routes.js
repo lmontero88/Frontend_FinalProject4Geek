@@ -10,7 +10,7 @@ import FavJugadores from '../pages/Favoritos/Jugadores/FavJugadores';
 import FavClasificados from '../pages/Favoritos/Clasificados/FavClasificados';
 import FavProfesores from '../pages/Favoritos/Profesores/FavProfesores';
 import EditarPerfil from '../pages/EditarPerfil/EditarPerfil';
-import Recuperar from '../components/cover/Recuperar'
+import PageDetailPlayer from '../components/commons/PageDetailPlayer/PageDetailPlayer';
 
 const routes = [
   {
@@ -20,8 +20,13 @@ const routes = [
   },
   {
     path: '/match',
-    exact: false,
+    exact: true,
     page: Match
+  },
+  {
+    path: '/match/:id',
+    exact: true,
+    page: PageDetailPlayer
   },
   {
     path: '/profesores',
