@@ -1,7 +1,7 @@
 import React from "react";
 import Welcome from "../../components/cover/Welcome";
 import Login from "../../components/cover/Login";
-import Register from "../../components/cover/Register";
+import RegisterComponent from "../../components/cover/Register/Register";
 import "./Cover.scss";
 
 const Cover = () => {
@@ -17,7 +17,7 @@ const Cover = () => {
           <div className="right-container bg-primary">
             <Login />
           </div>
-          <Register />
+          <RegisterComponent />
         
       </div>
     </div>

@@ -9,12 +9,13 @@ import {
   isEmailValid,
   isPasswordValid,
 } from "../../../utils/validators";
-import { login } from "../../../services/authService";
+/*import { login } from "../../../services/authService";*/
 import { TOKEN_KEY } from "../../../utils/constants";
 
-const Register = (props) => {
+const RegisterComponent = (props) => {
   const { setRefresh } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [checkBox, setCheckBox] = useState(false);
   const [register, setRegister] = useState({
     firstName: "",
     lastName: "",
@@ -48,6 +49,8 @@ const Register = (props) => {
       toast.warn("Las contraseñas no coinciden.");
     } else if (register.birthdate === "") {
       toast.warn("Por favor, seleccione una fecha de nacimiento.");
+    } else if (register.gender === "") {
+      toast.warn("Por favor, seleccione un genero.");
     } else {
       setLoading(true);
       registerUser(register)
@@ -176,6 +179,7 @@ const Register = (props) => {
                             id="exampleInputGender"
                             defaultValue={register.gender}
                           >
+                            <option>Genero</option>
                             <option>Hombre</option>
                             <option>Mujer</option>
                           </select>
@@ -185,6 +189,7 @@ const Register = (props) => {
                         <div className="form-check">
                           <input
                             className="form-check-input"
+                            name="isTeacher"
                             type="checkbox"
                             defaultValue={register.isTeacher}
                             id="exampleCheckIsTeacher"
@@ -228,4 +233,4 @@ const Register = (props) => {
   );
 };
 
-export default Register;
+export default RegisterComponent;

@@ -5,7 +5,6 @@ import { login } from "../../../services/authService";
 import { TOKEN_KEY } from "../../../utils/constants";
 import { isEmailValid } from "../../../utils/validators";
 import Loading from "../../commons/Loading/Loading";
-import Register from "../Register/Register";
 import Recuperar from "../Recuperar/Recuperar";
 import "./Login.scss";
 
@@ -80,7 +79,7 @@ const Login = (props) => {
               <input
                 name="password"
                 className="form-control"
-                placeholder="******"
+                placeholder="**********"
                 type="password"
                 defaultValue={formData.password}
               />
@@ -113,7 +112,6 @@ const Login = (props) => {
             Registrarse
           </button>
         </div>
-        <Register />
       </article>
     </div>
   );

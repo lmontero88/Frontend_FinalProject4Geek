@@ -3,16 +3,24 @@ import { Link } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout";
 import "./Perfil.scss";
 import photo2 from "../../images/footballer-marketing.png";
-import { getUser } from '../../services/authService';
+/*import { getUser } from '../../services/authService';*/
 
 const Perfil = () => {
-  let profileImage = "https://place-hold.it/150";
-
   const [user, setUser] = useState({
     firstName: "",
-    lastName: "Peña",
-    bio: "Hola, tengo 24 años y me gusta mucho jugar al futbol.",
-    imagen: "",
+    lastName: "",
+    bio: "",
+    image: "",
+  });
+
+  const handleUserChange = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+  };
+
+  const [sport, setSport] = useState({
+    name: "",
+    exp: "",
   });
 
   return (
@@ -24,10 +32,11 @@ const Perfil = () => {
               <div className="row">
                 <div className="col-md-12 col-sm-12 mb-3">
                   <img
-                    src={profileImage}
-                    id="profileImage"
+                    src={user.image}
+                    name="image"
+                    id="image"
                     className="rounded-circle"
-                    alt="profileImage"
+                    alt="imagen"
                   ></img>
                 </div>
               </div>
@@ -65,10 +74,10 @@ const Perfil = () => {
                         </div>
                         <div className="modal-body">
                           <img
-                            src={profileImage}
-                            id="profileImage"
+                            src={user.image}
+                            id="image"
                             className="rounded mb-4 mt-3"
-                            alt="profileImage"
+                            alt="imagen"
                           ></img>
                           <div className="mb-3">
                             <input
@@ -98,7 +107,7 @@ const Perfil = () => {
             </div>
             <div className="col-md-4 col-sm-12 border-right border-left px-3 py-2">
               <div className="text-center mb-4 mt-2">
-                <h1>{getUser().firstName + " " + user.lastName}</h1>
+                <h1>{user.firstName + " " + user.lastName}</h1>
               </div>
               <div className="border rounded-lg pt-2 px-2">
                 <h5>Sobre mi:</h5>
@@ -113,21 +122,21 @@ const Perfil = () => {
                   Editar Perfil
                 </Link>
               </div>
-              <img src={photo2} alt="..." id="photo2" />
+              <img src={photo2} alt="imagen" id="photo2" />
             </div>
             <div className="col-md-6 col-sm-12 px-5 py-2">
               <form>
                 <div className="form-row border-bottom">
                   <div className="form-group col-md-12 col-sm-12">
                     <label for="availableDays">Dias Disponibles</label>
-                    <select className="form-control" id="availableDays">
-                      <option>Lunes</option>
-                      <option>Martes</option>
-                      <option>Miercoles</option>
-                      <option>Jueves</option>
-                      <option>Viernes</option>
-                      <option>Sabados</option>
-                      <option>Domingos</option>
+                    <select className="form-control" id="availableDays" name="availableDays">
+                      <option value="mon">Lunes</option>
+                      <option value="tue">Martes</option>
+                      <option value="wed">Miercoles</option>
+                      <option value="thu">Jueves</option>
+                      <option value="fri">Viernes</option>
+                      <option value="sat">Sabados</option>
+                      <option value="dom">Domingos</option>
                     </select>
                   </div>
                   <div className="form-group col-md-7">
@@ -140,19 +149,19 @@ const Perfil = () => {
                           Hora
                         </label>
                       </div>
-                      <select className="custom-select" id="hour">
-                        <option selected value="0">
+                      <select className="custom-select" id="hour" name="hour">
+                        <option selected value="00">
                           00hs
                         </option>
-                        <option value="1">01hs</option>
-                        <option value="2">02hs</option>
-                        <option value="3">03hs</option>
-                        <option value="4">04hs</option>
-                        <option value="5">05hs</option>
-                        <option value="6">06hs</option>
-                        <option value="7">07hs</option>
-                        <option value="8">08hs</option>
-                        <option value="9">09hs</option>
+                        <option value="01">01hs</option>
+                        <option value="02">02hs</option>
+                        <option value="03">03hs</option>
+                        <option value="04">04hs</option>
+                        <option value="05">05hs</option>
+                        <option value="06">06hs</option>
+                        <option value="07">07hs</option>
+                        <option value="08">08hs</option>
+                        <option value="09">09hs</option>
                         <option value="10">10hs</option>
                         <option value="11">11hs</option>
                         <option value="12">12hs</option>
@@ -198,20 +207,20 @@ const Perfil = () => {
                       <div className="form-group col-md-5">
                         <label for="sport">Deporte</label>
                         <select className="form-control" id="sport">
-                          <option>Futbol</option>
-                          <option>Basketball</option>
-                          <option>Paddle</option>
-                          <option>Golf</option>
-                          <option>Tennis</option>
-                          <option>Skate</option>
+                          <option value="soccer">Futbol</option>
+                          <option value="basketball">Basketball</option>
+                          <option value="paddle">Paddle</option>
+                          <option value="golf">Golf</option>
+                          <option value="tennis">Tennis</option>
+                          <option value="skate">Skate</option>
                         </select>
                       </div>
                       <div className="form-group col-md-5">
                         <label for="level">Nivel</label>
                         <select className="form-control" id="level">
-                          <option>Principiante</option>
-                          <option>Intermedio</option>
-                          <option>Avanzado</option>
+                          <option value="beginner">Principiante</option>
+                          <option value="intermediate">Intermedio</option>
+                          <option value="advanced">Avanzado</option>
                         </select>
                       </div>
                       <div className="form-group col-md-2 d-flex align-self-end">
