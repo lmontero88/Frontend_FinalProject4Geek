@@ -45,13 +45,13 @@ function Profesores() {
                   </span>
                     <div className="form-check">
                       <input className="form-check-input" type="radio" name="exampleRadios" onChange={handleInputChange} id="exampleRadios1" value="option1" checked />
-                      <label className="form-check-label" for="exampleRadios1">
+                      <label className="form-check-label" htmlFor="exampleRadios1">
                         Femenino
                       </label>
                     </div>
                     <div className="form-check">
                       <input className="form-check-input" type="radio" name="exampleRadios" onChange={handleInputChange} id="exampleRadios2" value="option2" />
-                      <label className="form-check-label" for="exampleRadios2">
+                      <label className="form-check-label" htmlFor="exampleRadios2">
                         Masculino
                         </label>
                     </div>
@@ -59,7 +59,7 @@ function Profesores() {
                     <div className='row'>
 
                       <div className="col-auto">
-                        <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                        <label class="sr-only" htmlFor="inlineFormInputGroup">Username</label>
                         <div className="input-group mb-2">
                           <div className="input-group-prepend">
                             <div className="input-group-text">desde</div>
@@ -69,7 +69,7 @@ function Profesores() {
                       </div>
 
                       <div className="col-auto">
-                        <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                        <label class="sr-only" htmlFor="inlineFormInputGroup">Username</label>
                         <div className="input-group mb-2">
                           <div className="input-group-prepend">
                             <div className="input-group-text">hasta</div>
@@ -80,7 +80,7 @@ function Profesores() {
                     </div>
 
                     <div>
-                      <label for='deporte'>Deporte</label>
+                      <label htmlFor='deporte'>Deporte</label>
                       <select class="custom-select custom-select-sm mb-1" id='deporte'>
                         <option selected>Open this select menu</option>
                         <option>Soccer</option>
@@ -92,7 +92,7 @@ function Profesores() {
                       </select>
                     </div>
                     <div>
-                      <label for='experiencia'>Experiencia</label>
+                      <label htmlFor='experiencia'>Experiencia</label>
                       <select class="custom-select custom-select-sm mb-1" id='experiencia'>
                         <option selected>Open this select menu</option>
                         <option>Principiante</option>
@@ -104,7 +104,7 @@ function Profesores() {
 
                     <div className="form-row border-bottom">
                       <div className="form-group col-md-12">
-                        <label for="availableDays">Available Days</label>
+                        <label htmlFor="availableDays">Available Days</label>
                         <select className="form-control" id="availableDays">
                           <option>Lunes</option>
                           <option>Martes</option>
@@ -116,13 +116,13 @@ function Profesores() {
                         </select>
                       </div>
                       <div className="form-row ">
-                        <label for="availableHours" className="ml-2">
+                        <label htmlFor="availableHours" className="ml-2">
                           Horas disponibles
                         </label>
                         <div className="form-group col-md-9 form-inline">
                           <div className="input-group mb-3 ml-1 mr-3">
                             <div className="input-group-prepend">
-                              <label className="input-group-text" for="fromHour">
+                              <label className="input-group-text" htmlFor="fromHour">
                                 desde
                              </label>
                             </div>
@@ -157,7 +157,7 @@ function Profesores() {
                           </div>
                           <div className="input-group mb-3">
                             <div className="input-group-prepend">
-                              <label className="input-group-text" for="fromHour">
+                              <label className="input-group-text" htmlFor="fromHour">
                                 hasta
                           </label>
                             </div>

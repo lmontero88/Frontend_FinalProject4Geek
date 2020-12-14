@@ -1,63 +1,98 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import MainLayout from '../../layouts/MainLayout';
 import UserCard from '../../components/commons/UserCard/UserCard';
 import './Match.scss'
+import { API_URL, TOKEN_KEY } from '../../utils/constants';
+import Loading from '../../components/commons/Loading/Loading';
+import { getToken, logout } from '../../services/authService';
+import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const Match = () => {
-  const [datos, setDatos] = useState({
-    exampleRadios: '',
-    desde:'',
-    hasta:''
+  //conectandondose a la API
+  const [player, setplayer] = useState([])
+  const [loading, setLoading] = useState(false)
+  const { setRefresh } = useAuth();
 
-  })
-
-  const handleInputChange = (event) => {
-    console.log(event.target.value)
-    setDatos({
-      ...datos,
-      [event.target.name] : event.target.value
-    })
+  const jugadores = async () => {
+    try {
+      setLoading(true)
+      // Obtengo el token del localStorage
+      // en caso que no este o este expirado retorna null
+      const token = getToken();
+      if (token === null) {
+        // le mando a decir a todos los componentes que se actualicen,
+        // porque el token esta expirado o no esta
+        // entonces hay que mostrar la pagina de inicio
+        setRefresh(true)
+      }
+      else {
+        // prepara la peticion a la API con el token que obtuve
+        const params = {
+          method: "GET", // en caso que sea PUT, poner PUT, POST poner POST
+          headers: {
+            // aqui es donde va el token, tiene que llamarse Authorization obligatoriamente
+            "Authorization": token
+          },
+        };
+        const response = await fetch(`${API_URL}/players`, params);
+        // Si la API me retorna 401 (Unauthorized) debo eliminar el token del localstorage
+        // con la funcion logout, mostrarle un mensaje y decirle a todos los componentes
+        // que se actualicen
+        if (response.status === 401) {
+          logout()
+          toast.warn("Su token ha expirado. Vuelva a iniciar sesión.")
+          setRefresh(true)
+        }
+        // si la respuesta es OK (de 200 a 300) hago lo que normalmeente iba a hacer
+        else if (response.status >= 200 && response.status < 300) {
+          const data = await response.json();
+          setplayer(data)
+        }
+        // en cualquier otro caso muestro un mensaje y mas nada
+        else {
+          toast.err("Ha ocurrido un error.")
+        }
+      }
+      setLoading(false)
+    }
+    catch (error) {
+      setLoading(false)
+      toast.error(error.message)
+    }
   }
-  const enviarDatos = (event) =>{
-    event.preventDefault();
-    console.log(datos.exampleRadios + ' ' + datos.desde + ' ' + datos.hasta)
-  }
-  let usuarios = [{nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"20:00 a 22:00"}, {nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"20:00 a 22:00"}, {nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"20:00 a 22:00"},]
 
+  useEffect(() => {
+    jugadores();
+  }, []);
 
-  
   return (
     <MainLayout>
       <Fragment>
-      <div className='container col-md-12'>
-        <form action="" onSubmit={enviarDatos}>
-        <div className='row'>
-          <div className='col-md-3'>
-            <div className='col-md-4'>
-              <div className="card" style={{ width: '12rem' }}>
+        <div className='container col-md-12 pr-1 pl-1'>
+          <div className='row'>
+            <div className='col-xl-3 col-lg-4 col-md-12'>
+              <div className="card col-12">
                 <div className="card-body">
                   <h5 className="card-title">Filtros</h5>
-                  <hr></hr>
+                  <hr />
                   <form>
-                    <span>Sexo</span>
+                    <span><b>Sexo</b></span>
                     <div className="form-check">
-                      <input className="form-check-input" type="radio" name="exampleRadios" onChange={handleInputChange} id="exampleRadios1" value="option1" checked />
-                      <label className="form-check-label" for="exampleRadios1">
+                      <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked />
+                      <label className="form-check-label" htmlFor="exampleRadios1">
                         Femenino
                       </label>
                     </div>
                     <div className="form-check">
-                      <input className="form-check-input" type="radio" name="exampleRadios" onChange={handleInputChange} id="exampleRadios2" value="option2" />
-                      <label className="form-check-label" for="exampleRadios2">
+                      <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                      <label className="form-check-label" htmlFor="exampleRadios2">
                         Masculino
                       </label>
                     </div>
                     <label>Edad</label>
                     <div className="row">
                       <div className="col-auto">
-                        <label class="sr-only" for="inlineFormInputGroup">
-                          Username
-                        </label>
                         <div className="input-group mb-2">
                           <div className="input-group-prepend">
                             <div className="input-group-text">desde</div>
@@ -67,9 +102,6 @@ const Match = () => {
                       </div>
 
                       <div className="col-auto">
-                        <label class="sr-only" for="inlineFormInputGroup">
-                          Username
-                        </label>
                         <div className="input-group mb-2">
                           <div className="input-group-prepend">
                             <div className="input-group-text">hasta</div>
@@ -80,9 +112,9 @@ const Match = () => {
                     </div>
 
                     <div>
-                      <label for="deporte">Deporte</label>
+                      <label htmlFor="deporte">Deporte</label>
                       <select
-                        class="custom-select custom-select-sm mb-1"
+                        className="custom-select custom-select-sm mb-1"
                         id="deporte"
                       >
                         <option selected>Open this select menu</option>
@@ -95,9 +127,9 @@ const Match = () => {
                       </select>
                     </div>
                     <div>
-                      <label for="experiencia">Experiencia</label>
+                      <label htmlFor="experiencia">Experiencia</label>
                       <select
-                        class="custom-select custom-select-sm mb-1"
+                        className="custom-select custom-select-sm mb-1"
                         id="experiencia"
                       >
                         <option selected>Open this select menu</option>
@@ -110,7 +142,7 @@ const Match = () => {
 
                     <div className="form-row border-bottom">
                       <div className="form-group col-md-12">
-                        <label for="availableDays">Available Days</label>
+                        <label htmlFor="availableDays">Available Days</label>
                         <select className="form-control" id="availableDays">
                           <option>Lunes</option>
                           <option>Martes</option>
@@ -122,13 +154,13 @@ const Match = () => {
                         </select>
                       </div>
                       <div className="form-row ">
-                        <label for="availableHours" className="ml-2">
+                        <label htmlFor="availableHours" className="ml-2">
                           Horas disponibles
                         </label>
                         <div className="form-group col-md-9 form-inline">
                           <div className="input-group mb-3 ml-1 mr-3">
                             <div className="input-group-prepend">
-                              <label className="input-group-text" for="fromHour">
+                              <label className="input-group-text" htmlFor="fromHour">
                                 desde
                              </label>
                             </div>
@@ -163,12 +195,12 @@ const Match = () => {
                           </div>
                           <div className="input-group mb-3">
                             <div className="input-group-prepend">
-                              <label className="input-group-text" for="fromHour">
+                              <label className="input-group-text" htmlFor="fromHour">
                                 hasta
                           </label>
                             </div>
                             <select className="custom-select" id="toHour">
-                              <option value="0">00hs</option>
+                              <option defaultValue="0">00hs</option>
                               <option value="1">01hs</option>
                               <option value="2">02hs</option>
                               <option value="3">03hs</option>
@@ -183,7 +215,7 @@ const Match = () => {
                               <option selected value="12">
                                 12hs
                               </option>
-                              <option value="13">13hs</option>
+                              <option defaultValue="13">13hs</option>
                               <option value="14">14hs</option>
                               <option value="15">15hs</option>
                               <option value="16">16hs</option>
@@ -200,26 +232,25 @@ const Match = () => {
                       </div>
                     </div>
 
-                    <button className="btn btn-secondary mt-3" onClick="" type="submit">Filtrar</button>
+                    <button className="btn btn-secondary mt-3" type="submit">Filtrar</button>
                   </form>
                 </div>
               </div>
             </div>
-          </div>
-          <div className='col-md-9'>
-            <div className='row d-flex justify-content-around'>
-              {
-                usuarios.map((elemento, index, arr) =>{
+            <div className='col-xl-9 col-lg-8 col-md-12'>
+              <div className='row d-flex justify-content-around flex-wrap align-content-center min-vh-100'>
+                {
+                  loading ? <Loading /> : player.map((item, i) => {
+                    return <UserCard key={i} nombre={item.firstname} apellido={item.lastname} id={item.id} />
+                  })
+                }
 
-                  return <UserCard nombre={elemento.nombre} edad={elemento.edad} contacto={elemento.contacto} horarios={elemento.horarios} key={index}/>
-                })
-              }
-              
+              </div>
             </div>
           </div>
+
+
         </div>
-        </form>
-      </div>
       </Fragment>
     </MainLayout>
   );
@@ -249,7 +280,7 @@ export default Match;
 //
 //let input = document.getElementsByTagName("input");
 //let i
-//for (i=0; i<input.length; i++) {
+//htmlFor (i=0; i<input.length; i++) {
 // input[i].addEventListener("change",  function(){
 //  resultados = obtenerDatos();
 //  console.log(resultados);

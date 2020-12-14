@@ -53,7 +53,7 @@ const Perfil = () => {
                   <div
                     className="modal fade"
                     id="editImageModal"
-                    tabindex="-1"
+                    tabIndex="-1"
                     aria-labelledby="editImageModalLabel"
                     aria-hidden="true"
                   >
@@ -128,6 +128,7 @@ const Perfil = () => {
               <form>
                 <div className="form-row border-bottom">
                   <div className="form-group col-md-12 col-sm-12">
+<<<<<<< HEAD
                     <label for="availableDays">Dias Disponibles</label>
                     <select className="form-control" id="availableDays" name="availableDays">
                       <option value="mon">Lunes</option>
@@ -137,15 +138,26 @@ const Perfil = () => {
                       <option value="fri">Viernes</option>
                       <option value="sat">Sabados</option>
                       <option value="dom">Domingos</option>
+=======
+                    <label htmlFor="availableDays">Dias Disponibles</label>
+                    <select className="form-control" id="availableDays">
+                      <option>Lunes</option>
+                      <option>Martes</option>
+                      <option>Miercoles</option>
+                      <option>Jueves</option>
+                      <option>Viernes</option>
+                      <option>Sabados</option>
+                      <option>Domingos</option>
+>>>>>>> a664a8bcada591adc34453aa52b54feb9b1c22ba
                     </select>
                   </div>
                   <div className="form-group col-md-7">
-                    <label for="availableHours" className="ml-2">
+                    <label htmlFor="availableHours" className="ml-2">
                       Horario Disponible
                     </label>
                     <div className="input-group mb-3 ml-1">
                       <div className="input-group-prepend">
-                        <label className="input-group-text" for="hour">
+                        <label className="input-group-text" htmlFor="hour">
                           Hora
                         </label>
                       </div>
@@ -188,7 +200,7 @@ const Perfil = () => {
                       />
                       <label
                         className="custom-control-label"
-                        for="customSwitches"
+                        htmlFor="customSwitches"
                       >
                         Estado
                       </label>
@@ -198,14 +210,14 @@ const Perfil = () => {
               </form>
               <form>
                 <div className="form-row mt-4 ml-1">
-                  <label for="addSports">Agrega un Deporte</label>
+                  <label htmlFor="addSports">Agrega un Deporte</label>
                   <div className="col-md-12">
                     <div
                       className="form-row border rounded-lg pl-3 pr-5 pt-2"
                       id="addSports"
                     >
                       <div className="form-group col-md-5">
-                        <label for="sport">Deporte</label>
+                        <label htmlFor="sport">Deporte</label>
                         <select className="form-control" id="sport">
                           <option value="soccer">Futbol</option>
                           <option value="basketball">Basketball</option>
@@ -216,7 +228,7 @@ const Perfil = () => {
                         </select>
                       </div>
                       <div className="form-group col-md-5">
-                        <label for="level">Nivel</label>
+                        <label htmlFor="level">Nivel</label>
                         <select className="form-control" id="level">
                           <option value="beginner">Principiante</option>
                           <option value="intermediate">Intermedio</option>

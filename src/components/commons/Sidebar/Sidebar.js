@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import './Sidebar.scss';
 
 function Sidebar() {
+
+    const sideBarRef = useRef(null);
+
+    const handleToggleSidebar = () => {
+        sideBarRef.current.classList.toggle('toggled')
+    }
+
     return (
         <div>
-            <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sticky-top" id="accordionSidebar">
+            <ul ref={sideBarRef} className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sticky-top" id="accordionSidebar">
 
                 <Link exact to="/" className="sidebar-brand d-flex align-items-center justify-content-center">
                     <div className="sidebar-brand-icon rotate-n-15">
@@ -19,7 +26,7 @@ function Sidebar() {
                 <NavLink className="nav-item text-decoration-none" to="/match" activeClassName="active">
                     <div className="nav-link">
                         <i className="fas fa-user-friends"></i>
-                        <span>Match</span>
+                        <span>Jugadores</span>
                     </div>
                 </NavLink>
 
@@ -62,7 +69,7 @@ function Sidebar() {
                 <hr className="sidebar-divider d-none d-md-block" />
 
                 <div className="text-center d-none d-md-inline">
-                    <button className="rounded-circle border-0" id="sidebarToggle"></button>
+                    <button className="rounded-circle border-0" id="sidebarToggle" onClick={handleToggleSidebar}></button>
                 </div>
 
 

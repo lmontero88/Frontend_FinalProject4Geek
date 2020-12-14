@@ -139,7 +139,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 								'aria-controls': settings.sTableId,
 								'aria-label': aria[ button ],
 								'data-dt-idx': counter,
-								'tabindex': settings.iTabIndex,
+								'tabIndex': settings.iTabIndex,
 								'class': 'page-link'
 							} )
 							.html( btnDisplay )

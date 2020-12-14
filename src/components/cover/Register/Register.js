@@ -34,6 +34,7 @@ const RegisterComponent = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
 
     if (!isFirstNameValid(register.firstName)) {
       toast.warn("El nombre solo debe contener letras.");
@@ -60,11 +61,17 @@ const RegisterComponent = (props) => {
           } else {
             localStorage.setItem(TOKEN_KEY, response.Authorization);
             setLoading(false);
+            document.querySelector('body').classList.remove('modal-open');
+            document.querySelector('body').removeAttribute("style")
+            document.getElementsByClassName('modal-backdrop')[0].remove();
             setRefresh(true);
+
           }
         })
         .catch(() => {
           setLoading(false);
+          document.querySelector('body').classList.remove('modal-open');
+          document.getElementsByClassName('modal-backdrop')[0].remove();
           toast.error("Error del servidor, inténtelo más tarde");
         });
     }
@@ -97,7 +104,7 @@ const RegisterComponent = (props) => {
                     >
                       <div className="form-group row">
                         <div className="col-sm-6 mb-3 mb-sm-0">
-                          <label for="exampleFirstName">Nombre</label>
+                          <label htmlFor="exampleFirstName">Nombre</label>
                           <input
                             type="text"
                             name="firstName"
@@ -107,7 +114,7 @@ const RegisterComponent = (props) => {
                           />
                         </div>
                         <div className="col-sm-6">
-                          <label for="exampleLastName">Apellido</label>
+                          <label htmlFor="exampleLastName">Apellido</label>
                           <input
                             type="text"
                             name="lastName"
@@ -118,7 +125,7 @@ const RegisterComponent = (props) => {
                         </div>
                       </div>
                       <div className="form-group">
-                        <label for="exampleInputEmail">
+                        <label htmlFor="exampleInputEmail">
                           Correo Electronico
                         </label>
                         <input
@@ -132,7 +139,7 @@ const RegisterComponent = (props) => {
                       </div>
                       <div className="form-group row">
                         <div className="col-sm-6 mb-3 mb-sm-0">
-                          <label for="exampleInputPassword">Contraseña</label>
+                          <label htmlFor="exampleInputPassword">Contraseña</label>
                           <input
                             type="password"
                             name="password"
@@ -143,7 +150,7 @@ const RegisterComponent = (props) => {
                           />
                         </div>
                         <div className="col-sm-6">
-                          <label for="exampleInputRepeatPassword">
+                          <label htmlFor="exampleInputRepeatPassword">
                             Repetir Contraseña
                           </label>
                           <input
@@ -158,7 +165,7 @@ const RegisterComponent = (props) => {
                       </div>
                       <div className="form-group row">
                         <div className="col-sm-6">
-                          <label for="exampleInputBirthdate">
+                          <label htmlFor="exampleInputBirthdate">
                             Fecha de Nacimiento
                           </label>
                           <input
@@ -170,7 +177,7 @@ const RegisterComponent = (props) => {
                           />
                         </div>
                         <div className="col-sm-6">
-                          <label for="exampleInputGender">
+                          <label htmlFor="exampleInputGender">
                             ¿Cuál es tu género?
                           </label>
                           <select
@@ -194,10 +201,7 @@ const RegisterComponent = (props) => {
                             defaultValue={register.isTeacher}
                             id="exampleCheckIsTeacher"
                           />
-                          <label
-                            className="form-check-label"
-                            for="exampleCheckIsTeacher"
-                          >
+                          <label className="form-check-label" htmlFor="exampleCheckIsTeacher">
                             ¿Eres Profesor?
                           </label>
                         </div>
