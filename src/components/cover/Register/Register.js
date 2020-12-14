@@ -33,6 +33,7 @@ const Register = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
 
     if (!isFirstNameValid(register.firstName)) {
       toast.warn("El nombre solo debe contener letras.");
@@ -57,11 +58,17 @@ const Register = (props) => {
           } else {
             localStorage.setItem(TOKEN_KEY, response.Authorization);
             setLoading(false);
+            document.querySelector('body').classList.remove('modal-open');
+            document.querySelector('body').removeAttribute("style")
+            document.getElementsByClassName('modal-backdrop')[0].remove();
             setRefresh(true);
+
           }
         })
         .catch(() => {
           setLoading(false);
+          document.querySelector('body').classList.remove('modal-open');
+          document.getElementsByClassName('modal-backdrop')[0].remove();
           toast.error("Error del servidor, inténtelo más tarde");
         });
     }
