@@ -13,7 +13,7 @@ const Perfil = () => {
     image: "",
   });
 
-  const handleUserChange = (e) => {
+  /*const handleUserChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
@@ -21,7 +21,7 @@ const Perfil = () => {
   const [sport, setSport] = useState({
     name: "",
     exp: "",
-  });
+  });*/
 
   return (
     <div>
@@ -128,7 +128,6 @@ const Perfil = () => {
               <form>
                 <div className="form-row border-bottom">
                   <div className="form-group col-md-12 col-sm-12">
-<<<<<<< HEAD
                     <label for="availableDays">Dias Disponibles</label>
                     <select className="form-control" id="availableDays" name="availableDays">
                       <option value="mon">Lunes</option>
@@ -138,17 +137,6 @@ const Perfil = () => {
                       <option value="fri">Viernes</option>
                       <option value="sat">Sabados</option>
                       <option value="dom">Domingos</option>
-=======
-                    <label htmlFor="availableDays">Dias Disponibles</label>
-                    <select className="form-control" id="availableDays">
-                      <option>Lunes</option>
-                      <option>Martes</option>
-                      <option>Miercoles</option>
-                      <option>Jueves</option>
-                      <option>Viernes</option>
-                      <option>Sabados</option>
-                      <option>Domingos</option>
->>>>>>> a664a8bcada591adc34453aa52b54feb9b1c22ba
                     </select>
                   </div>
                   <div className="form-group col-md-7">
