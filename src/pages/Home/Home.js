@@ -6,13 +6,10 @@ import Post from "../../components/commons/Post/Post";
 const Home = () => {
   return (
     <MainLayout>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-12">
-            <h1>Home</h1>
-            <Post />
-            <Post />
-          </div>
+      <div className="row">
+        <div className="col-md-12">
+          <Post />
+          <Post />
         </div>
       </div>
     </MainLayout>
