@@ -12,7 +12,7 @@ export function login(loginData) {
   const params = {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(data)
   };
@@ -56,6 +56,20 @@ export function getUser() {
   }
   const decode_token = jwtDecode(token);
   return decode_token;
+}
+
+export function getToken() {
+  const token = localStorage.getItem(TOKEN_KEY);
+
+  if (!token) {
+    logout();
+    return null;
+  }
+  if (isExpired(token)) {
+    logout();
+    return null;
+  }
+  return token;
 }
 
 export function registerUser(registerData) {
