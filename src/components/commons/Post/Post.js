@@ -1,7 +1,7 @@
 import React from 'react'
 import './Post.scss';
 
-function Post(imagen,titulo,contenido,boton) {
+function Post({imagen,titulo,contenido,boton}) {
     return (
             <div className="card carta">
               <img src={`${imagen}`} className="card-img-top" alt="..."/>
