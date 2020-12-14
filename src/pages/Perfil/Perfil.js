@@ -128,7 +128,7 @@ const Perfil = () => {
               <form>
                 <div className="form-row border-bottom">
                   <div className="form-group col-md-12 col-sm-12">
-                    <label for="availableDays">Dias Disponibles</label>
+                    <label htmlFor="availableDays">Dias Disponibles</label>
                     <select className="form-control" id="availableDays" name="availableDays">
                       <option value="mon">Lunes</option>
                       <option value="tue">Martes</option>

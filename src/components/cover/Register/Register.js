@@ -15,7 +15,7 @@ import { TOKEN_KEY } from "../../../utils/constants";
 const RegisterComponent = (props) => {
   const { setRefresh } = useAuth();
   const [loading, setLoading] = useState(false);
-  const [checkBox, setCheckBox] = useState(false);
+  /*const [checkBox, setCheckBox] = useState(false);*/
   const [register, setRegister] = useState({
     firstName: "",
     lastName: "",
@@ -31,6 +31,11 @@ const RegisterComponent = (props) => {
     const { name, value } = e.target;
     setRegister({ ...register, [name]: value });
   };
+
+  const handleCheckBox = (e) => {
+    let check = e.target.checked;
+    setRegister({...register, isTeacher: check});
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -100,7 +105,6 @@ const RegisterComponent = (props) => {
                     <form
                       className="mx-1"
                       onSubmit={handleSubmit}
-                      onChange={handleChange}
                     >
                       <div className="form-group row">
                         <div className="col-sm-6 mb-3 mb-sm-0">
@@ -110,7 +114,8 @@ const RegisterComponent = (props) => {
                             name="firstName"
                             className="form-control"
                             id="exampleFirstName"
-                            defaultValue={register.firstName}
+                            value={register.firstName}
+                            onChange={handleChange}
                           />
                         </div>
                         <div className="col-sm-6">
@@ -120,7 +125,8 @@ const RegisterComponent = (props) => {
                             name="lastName"
                             className="form-control"
                             id="exampleLastName"
-                            defaultValue={register.lastName}
+                            value={register.lastName}
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
@@ -134,7 +140,8 @@ const RegisterComponent = (props) => {
                           className="form-control"
                           id="exampleInputEmail"
                           placeholder="example@matchup.com"
-                          defaultValue={register.email}
+                          value={register.email}
+                          onChange={handleChange}
                         />
                       </div>
                       <div className="form-group row">
@@ -146,7 +153,8 @@ const RegisterComponent = (props) => {
                             className="form-control"
                             id="exampleInputPassword"
                             placeholder="**********"
-                            defaultValue={register.password}
+                            value={register.password}
+                            onChange={handleChange}
                           />
                         </div>
                         <div className="col-sm-6">
@@ -159,7 +167,8 @@ const RegisterComponent = (props) => {
                             className="form-control"
                             id="exampleInputRepeatPassword"
                             placeholder="**********"
-                            defaultValue={register.repeatPassword}
+                            value={register.repeatPassword}
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
@@ -173,7 +182,8 @@ const RegisterComponent = (props) => {
                             name="birthdate"
                             className="form-control"
                             id="exampleInputBirthdate"
-                            defaultValue={register.birthdate}
+                            value={register.birthdate}
+                            onChange={handleChange}
                           />
                         </div>
                         <div className="col-sm-6">
@@ -184,7 +194,8 @@ const RegisterComponent = (props) => {
                             name="gender"
                             className="form-control"
                             id="exampleInputGender"
-                            defaultValue={register.gender}
+                            value={register.gender}
+                            onChange={handleChange}
                           >
                             <option>Genero</option>
                             <option>Hombre</option>
@@ -198,8 +209,9 @@ const RegisterComponent = (props) => {
                             className="form-check-input"
                             name="isTeacher"
                             type="checkbox"
-                            defaultValue={register.isTeacher}
+                            value={register.isTeacher}
                             id="exampleCheckIsTeacher"
+                            onChange={(e) => handleCheckBox(e)}
                           />
                           <label className="form-check-label" htmlFor="exampleCheckIsTeacher">
                             ¿Eres Profesor?
