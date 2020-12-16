@@ -3,7 +3,7 @@
     height: 150px;
 }
 
-h5 {
+#editImageModalLabel {
     text-decoration: underline;
 }
 
@@ -12,6 +12,17 @@ h5 {
     height: 267px;
 }
 
+#profilePhoto {
+    width: 220px;
+    height: 220px;
+    margin-right: 10px;
+}
+
 #formFile {
     cursor: pointer;
+}
+
+#trash:hover {
+    cursor: pointer;
+    color: rgb(255, 152, 16);
 }
