@@ -1,40 +1,84 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout";
+import { API_URL } from "../../utils/constants";
+import useAuth from "../../hooks/useAuth";
+import { getToken, logout } from "../../services/authService";
 import "./Perfil.scss";
+import profilePhoto from "../../images/icono-perfil-2.jpg";
 import photo2 from "../../images/footballer-marketing.png";
-/*import { getUser } from '../../services/authService';*/
+import { toast } from "react-toastify";
+import { getUser } from "../../services/authService";
 
 const Perfil = () => {
-  const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    bio: "",
-    image: "",
-  });
+  const [user, setUser] = useState({});
 
-  /*const handleUserChange = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
+  const [loading, setLoading] = useState(false);
+  const { setRefresh } = useAuth();
+
+  const profile = async () => {
+    try {
+      setLoading(true);
+      // Obtengo el token del localStorage
+      // en caso que no este o este expirado retorna null
+      const token = getToken();
+      if (token === null) {
+        // le mando a decir a todos los componentes que se actualicen,
+        // porque el token esta expirado o no esta
+        // entonces hay que mostrar la pagina de inicio
+        setRefresh(true);
+      } else {
+        const id = getUser().sub;
+        // prepara la peticion a la API con el token que obtuve
+        const params = {
+          method: "GET", // en caso que sea PUT, poner PUT, POST poner POST
+          headers: {
+            // aqui es donde va el token, tiene que llamarse Authorization obligatoriamente
+            Authorization: token,
+          },
+        };
+        const response = await fetch(`${API_URL}/players/${id}`, params);
+        // Si la API me retorna 401 (Unauthorized) debo eliminar el token del localstorage
+        // con la funcion logout, mostrarle un mensaje y decirle a todos los componentes
+        // que se actualicen
+        if (response.status === 401) {
+          logout();
+          toast.warn("Su token ha expirado. Vuelva a iniciar sesión.");
+          setRefresh(true);
+        }
+        // si la respuesta es OK (de 200 a 300) hago lo que normalmeente iba a hacer
+        else if (response.status >= 200 && response.status < 300) {
+          const data = await response.json();
+          setUser(data);
+        }
+        // en cualquier otro caso muestro un mensaje y mas nada
+        else {
+          toast.err("Ha ocurrido un error.");
+        }
+      }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      toast.error(error.message);
+    }
   };
 
-  const [sport, setSport] = useState({
-    name: "",
-    exp: "",
-  });*/
+  useEffect(() => {
+    profile();
+  }, []);
 
   return (
-    <div>
-      <MainLayout>
-        <div className="container mt-5 w-100">
+    <MainLayout>
+      <>
+        <div className="container-fluid mt-5 px-4 w-100">
           <div className="row">
-            <div className="col-md-2 col-sm-12 text-center">
+            <div className="col-md-3 col-sm-12 text-center">
               <div className="row">
                 <div className="col-md-12 col-sm-12 mb-3">
                   <img
-                    src={user.image}
+                    src={profilePhoto}
                     name="image"
-                    id="image"
+                    id="profilePhoto"
                     className="rounded-circle"
                     alt="imagen"
                   ></img>
@@ -74,7 +118,7 @@ const Perfil = () => {
                         </div>
                         <div className="modal-body">
                           <img
-                            src={user.image}
+                            src={profilePhoto}
                             id="image"
                             className="rounded mb-4 mt-3"
                             alt="imagen"
@@ -107,7 +151,7 @@ const Perfil = () => {
             </div>
             <div className="col-md-4 col-sm-12 border-right border-left px-3 py-2">
               <div className="text-center mb-4 mt-2">
-                <h1>{user.firstName + " " + user.lastName}</h1>
+                <h1>{user.firstname + " " + user.lastname}</h1>
               </div>
               <div className="border rounded-lg pt-2 px-2">
                 <h5>Sobre mi:</h5>
@@ -124,12 +168,17 @@ const Perfil = () => {
               </div>
               <img src={photo2} alt="imagen" id="photo2" />
             </div>
-            <div className="col-md-6 col-sm-12 px-5 py-2">
+            <div className="col-md-5 col-sm-12 px-5 py-2">
               <form>
                 <div className="form-row border-bottom">
                   <div className="form-group col-md-12 col-sm-12">
                     <label htmlFor="availableDays">Dias Disponibles</label>
-                    <select className="form-control" id="availableDays" name="availableDays">
+                    <select
+                      className="form-control"
+                      id="availableDays"
+                      name="availableDays"
+                    >
+                      <option defaultValue="">Selecciona un dia</option>
                       <option value="mon">Lunes</option>
                       <option value="tue">Martes</option>
                       <option value="wed">Miercoles</option>
@@ -150,9 +199,7 @@ const Perfil = () => {
                         </label>
                       </div>
                       <select className="custom-select" id="hour" name="hour">
-                        <option selected value="00">
-                          00hs
-                        </option>
+                        <option defaultValue="00">00hs</option>
                         <option value="01">01hs</option>
                         <option value="02">02hs</option>
                         <option value="03">03hs</option>
@@ -207,6 +254,7 @@ const Perfil = () => {
                       <div className="form-group col-md-5">
                         <label htmlFor="sport">Deporte</label>
                         <select className="form-control" id="sport">
+                          <option defaultValue="">Selecciona un deporte</option>
                           <option value="soccer">Futbol</option>
                           <option value="basketball">Basketball</option>
                           <option value="paddle">Paddle</option>
@@ -218,6 +266,7 @@ const Perfil = () => {
                       <div className="form-group col-md-5">
                         <label htmlFor="level">Nivel</label>
                         <select className="form-control" id="level">
+                          <option defaultValue="">Selecciona un nivel</option>
                           <option value="beginner">Principiante</option>
                           <option value="intermediate">Intermedio</option>
                           <option value="advanced">Avanzado</option>
@@ -230,12 +279,49 @@ const Perfil = () => {
                   </div>
                 </div>
               </form>
+              <div className="row">
+                <div className="col-md-12">
+                  <ul className="mt-4">
+                    {user.sports !== undefined &&
+                      user.sports.length > 0 &&
+                      user.sports.map((sport, i) => {
+                        return (
+                          <li className="mt-3" key={i}>
+                            <u><b>Deporte</b></u>:{" "}
+                            {sport.sport.name}<br/>
+                            <u><b>Experiencia</b></u>:{" "}
+                            {sport.experiencia}{" "}
+                            <i className="fas fa-trash ml-2" id="trash"></i>
+                          </li>
+                        );
+                      })}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </MainLayout>
-    </div>
+      </>
+    </MainLayout>
   );
 };
 
 export default Perfil;
+
+/*
+const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    bio: "",
+    image: "",
+  });
+
+  /*const handleUserChange = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+  };
+
+  const [sport, setSport] = useState({
+    name: "",
+    exp: "",
+  });*/
