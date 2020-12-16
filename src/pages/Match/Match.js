@@ -17,39 +17,34 @@ const Match = () => {
   const jugadores = async () => {
     try {
       setLoading(true)
-      // Obtengo el token del localStorage
-      // en caso que no este o este expirado retorna null
+     
       const token = getToken();
       if (token === null) {
-        // le mando a decir a todos los componentes que se actualicen,
-        // porque el token esta expirado o no esta
-        // entonces hay que mostrar la pagina de inicio
+       
         setRefresh(true)
       }
       else {
-        // prepara la peticion a la API con el token que obtuve
+        
         const params = {
-          method: "GET", // en caso que sea PUT, poner PUT, POST poner POST
+          method: "GET", 
           headers: {
-            // aqui es donde va el token, tiene que llamarse Authorization obligatoriamente
+            
             "Authorization": token
           },
         };
         const response = await fetch(`${API_URL}/players`, params);
-        // Si la API me retorna 401 (Unauthorized) debo eliminar el token del localstorage
-        // con la funcion logout, mostrarle un mensaje y decirle a todos los componentes
-        // que se actualicen
+        
         if (response.status === 401) {
           logout()
           toast.warn("Su token ha expirado. Vuelva a iniciar sesión.")
           setRefresh(true)
         }
-        // si la respuesta es OK (de 200 a 300) hago lo que normalmeente iba a hacer
+       
         else if (response.status >= 200 && response.status < 300) {
           const data = await response.json();
           setplayer(data)
         }
-        // en cualquier otro caso muestro un mensaje y mas nada
+       
         else {
           toast.err("Ha ocurrido un error.")
         }

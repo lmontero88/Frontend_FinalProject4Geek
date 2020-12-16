@@ -1,65 +1,114 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import MainLayout from '../../layouts/MainLayout';
 import UserCard from '../../components/commons/UserCard/UserCard';
+import { API_URL, TOKEN_KEY } from '../../utils/constants';
+import Loading from '../../components/commons/Loading/Loading';
+import { getToken, logout } from '../../services/authService';
+import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 function Profesores() {
-    const [datos, setDatos] = useState({
-        exampleRadios: '',
-        desde:'',
-        hasta:''
-    
-      })
-    
-      const handleInputChange = (event) => {
-        console.log(event.target.value)
-        setDatos({
-          ...datos,
-          [event.target.name] : event.target.value
-        })
+  const [loading, setLoading] = useState(false)
+  const [profesor, setProfesor] = useState([])
+  const { setRefresh } = useAuth();
+
+  const profesores = async () => {
+    try {
+      setLoading(true)
+     
+      const token = getToken();
+      if (token === null) {
+       
+        setRefresh(true)
       }
-      const enviarDatos = (event) =>{
-        event.preventDefault();
-        console.log(datos.exampleRadios + ' ' + datos.desde)
+      else {
+        
+        const params = {
+          method: "GET", 
+          headers: {
+            
+            "Authorization": token
+          },
+        };
+        const response = await fetch(`${API_URL}/profesores`, params);
+        
+        if (response.status === 401) {
+          logout()
+          toast.warn("Su token ha expirado. Vuelva a iniciar sesión.")
+          setRefresh(true)
+        }
+       
+        else if (response.status >= 200 && response.status < 300) {
+          const data = await response.json();
+          setProfesor(data)
+        }
+       
+        else {
+          toast.err("Ha ocurrido un error.")
+        }
       }
+      setLoading(false)
+    }
+    catch (error) {
+      setLoading(false)
+      toast.error(error.message)
+    }
+  }
+
+  useEffect(() => {
+    profesores();
+  }, []);
+
   
-      let profesores = [{nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"lunes, martes y jueves"}, {nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"lunes, martes y jueves"}, {nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"lunes martes y jueves"},]
+
+    // const [datos, setDatos] = useState({
+    //     exampleRadios: '',
+    //     desde:'',
+    //     hasta:''
+    
+    //   })
+    
+    //   const handleInputChange = (event) => {
+    //     console.log(event.target.value)
+    //     setDatos({
+    //       ...datos,
+    //       [event.target.name] : event.target.value
+    //     })
+    //   }
+    //   const enviarDatos = (event) =>{
+    //     event.preventDefault();
+    //     console.log(datos.exampleRadios + ' ' + datos.desde)
+    //   }
+  
+    //   let profesores = [{nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"lunes, martes y jueves"}, {nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"lunes, martes y jueves"}, {nombre: "lilian", edad: "20", contacto: "9 4585 4758", horarios:"lunes martes y jueves"},]
 
       return (
         <MainLayout>
           <Fragment>
-
-          <div className='container col-md-12'>
-        <form action="" onSubmit={enviarDatos}>
-        <div className='row'>
-          <div className='col-md-3'>
-
-            <div className='col-md-4'>
-              <div className="card" style={{ width: '12rem' }}>
-
+        <div className='container col-md-12 pr-1 pl-1'>
+          <div className='row'>
+            <div className='col-xl-3 col-lg-4 col-md-12'>
+              <div className="card col-12">
                 <div className="card-body">
                   <h5 className="card-title">Filtros</h5>
-                  <hr></hr>
+                  <hr />
                   <form>
-                    <span>
-                      Sexo
-                  </span>
+                    <span><b>Sexo</b></span>
                     <div className="form-check">
-                      <input className="form-check-input" type="radio" name="exampleRadios" onChange={handleInputChange} id="exampleRadios1" value="option1" checked />
+                      <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked />
                       <label className="form-check-label" htmlFor="exampleRadios1">
                         Femenino
                       </label>
                     </div>
                     <div className="form-check">
-                      <input className="form-check-input" type="radio" name="exampleRadios" onChange={handleInputChange} id="exampleRadios2" value="option2" />
+                      <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
                       <label className="form-check-label" htmlFor="exampleRadios2">
                         Masculino
-                        </label>
+                      </label>
                     </div>
                     <label>Edad</label>
-                    <div className='row'>
-
+                    <div className="row">
                       <div className="col-auto">
-                        <label class="sr-only" htmlFor="inlineFormInputGroup">Username</label>
                         <div className="input-group mb-2">
                           <div className="input-group-prepend">
                             <div className="input-group-text">desde</div>
@@ -69,7 +118,6 @@ function Profesores() {
                       </div>
 
                       <div className="col-auto">
-                        <label class="sr-only" htmlFor="inlineFormInputGroup">Username</label>
                         <div className="input-group mb-2">
                           <div className="input-group-prepend">
                             <div className="input-group-text">hasta</div>
@@ -80,8 +128,11 @@ function Profesores() {
                     </div>
 
                     <div>
-                      <label htmlFor='deporte'>Deporte</label>
-                      <select class="custom-select custom-select-sm mb-1" id='deporte'>
+                      <label htmlFor="deporte">Deporte</label>
+                      <select
+                        className="custom-select custom-select-sm mb-1"
+                        id="deporte"
+                      >
                         <option selected>Open this select menu</option>
                         <option>Soccer</option>
                         <option>Basketball</option>
@@ -92,8 +143,11 @@ function Profesores() {
                       </select>
                     </div>
                     <div>
-                      <label htmlFor='experiencia'>Experiencia</label>
-                      <select class="custom-select custom-select-sm mb-1" id='experiencia'>
+                      <label htmlFor="experiencia">Experiencia</label>
+                      <select
+                        className="custom-select custom-select-sm mb-1"
+                        id="experiencia"
+                      >
                         <option selected>Open this select menu</option>
                         <option>Principiante</option>
                         <option>Intermedio</option>
@@ -162,7 +216,7 @@ function Profesores() {
                           </label>
                             </div>
                             <select className="custom-select" id="toHour">
-                              <option value="0">00hs</option>
+                              <option defaultValue="0">00hs</option>
                               <option value="1">01hs</option>
                               <option value="2">02hs</option>
                               <option value="3">03hs</option>
@@ -174,8 +228,10 @@ function Profesores() {
                               <option value="9">09hs</option>
                               <option value="10">10hs</option>
                               <option value="11">11hs</option>
-                              <option selected value="12">12hs</option>
-                              <option value="13">13hs</option>
+                              <option selected value="12">
+                                12hs
+                              </option>
+                              <option defaultValue="13">13hs</option>
                               <option value="14">14hs</option>
                               <option value="15">15hs</option>
                               <option value="16">16hs</option>
@@ -189,33 +245,29 @@ function Profesores() {
                             </select>
                           </div>
                         </div>
-
                       </div>
                     </div>
 
-                    <button className="btn btn-secondary mt-3" onClick="" type="submit">Filtrar</button>
+                    <button className="btn btn-secondary mt-3" type="submit">Filtrar</button>
                   </form>
                 </div>
               </div>
-
             </div>
-
-          </div>
-          <div className='col-md-9'>
-            <div className='row d-flex justify-content-around'>
+            <div className='col-xl-9 col-lg-8 col-md-12'>
+              <div className='row d-flex justify-content-around flex-wrap align-content-center min-vh-100'>
                 {
-                profesores.map((elemento, index, arr) =>{
+                  loading ? <Loading /> : profesor.map((item, i) => {
+                    return <UserCard key={i} nombre={item.firstname} apellido={item.lastname} id={item.id} />
+                  })
+                }
 
-                  return <UserCard nombre={elemento.nombre} edad={elemento.edad} contacto={elemento.contacto} horarios={elemento.horarios} key={index}/>
-                })
-              }
-                
-                </div>
               </div>
             </div>
-            </form>
           </div>
-          </Fragment>
+
+
+        </div>
+      </Fragment>
         </MainLayout>
       )
     }

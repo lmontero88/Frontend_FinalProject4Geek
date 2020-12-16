@@ -1,6 +1,63 @@
-import React from "react";
+import React from 'react'
 
-const Recuperar = () => {
+
+ const Recuperar = () => {
+//   const { id } = useParams();
+//     const [url, setUrl] = useState(`${API_URL}/players/${id}`)
+//     const [loading, setLoading] = useState(false)
+//     const { setRefresh } = useAuth();
+//     const [email, setEmail] = useState([])
+
+//     const handleInputChange = ({target})=>{
+//       setEmail({
+//         ...email,
+//         [target.name]:target.value
+//       })
+        
+
+// }
+
+//   const RecuperarContrasena = async () => {
+//     try {
+//         setLoading(true)
+
+//         const token = getToken();
+//         if (token === null) {
+
+//             setRefresh(true)
+//         }
+//         else {
+//             const params = {
+//                 method: "POST",
+//                 headers: {
+//                     "Authorization": token,
+//                     "Content-Type": "application/json",
+//                 },
+//                 body: JSON.stringify(match)
+//             };
+//             const response = await fetch(`${API_URL}/recuperar-password`, params);
+
+//             if (response.status === 401) {
+//                 logout()
+//                 toast.warn("Su token ha expirado. Vuelva a iniciar sesión.")
+//                 setRefresh(true)
+//             }
+//             else if (response.status >= 200 && response.status < 300) {
+//                 const data = await response.json();
+//                 toast.success(data.message)
+//             }
+//             else {
+//                 toast.err("Ha ocurrido un error.")
+//             }
+//         }
+//         setLoading(false)
+//     }
+//     catch (error) {
+//         setLoading(false)
+//         toast.error(error.message)
+//     }
+// }
+
   return (
     <div
       className="modal fade"
@@ -28,16 +85,16 @@ const Recuperar = () => {
                           type="email"
                           className="form-control form-control"
                           id="exampleInputEmail"
-                          placeholder="Correo Electronico"
+                          placeholder="Correo Electronico" 
                         />
                       </div>
                       <div className="form-group row"></div>
-                      <a
+                      <button
                         href="login.html"
-                        className="btn btn-primary  btn-block"
+                        className="btn btn-primary  btn-block" 
                       >
                         Recuperar Contraseña
-                      </a>
+                      </button>
                     </form>
                     <hr />
 
