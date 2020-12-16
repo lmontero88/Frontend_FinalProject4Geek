@@ -12,7 +12,7 @@ import {
 /*import { login } from "../../../services/authService";*/
 import { TOKEN_KEY } from "../../../utils/constants";
 
-const RegisterComponent = (props) => {
+const Register = (props) => {
   const { setRefresh } = useAuth();
   const [loading, setLoading] = useState(false);
   /*const [checkBox, setCheckBox] = useState(false);*/
@@ -249,4 +249,4 @@ const RegisterComponent = (props) => {
   );
 };
 
-export default RegisterComponent;
+export default Register;

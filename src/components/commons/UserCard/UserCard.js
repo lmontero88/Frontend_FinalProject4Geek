@@ -10,7 +10,7 @@ function UserCard({nombre,apellido,id,history}) {
     return(
         <div className="card pt-3 mb-2" style={{ width: '14rem' }}>
             <div className='d-flex justify-content-end mr-4'>
-                <i class="far fa-heart fa-2x cursor-pointer"></i>
+                <i className="far fa-heart fa-2x cursor-pointer"></i>
             </div>
             <img src="https://place-hold.it/100" className="card-img-top rounded-circle w-75 m-auto " alt="..." />
             <div className="card-body">
