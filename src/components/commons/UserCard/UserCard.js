@@ -1,6 +1,7 @@
 import React from 'react';
 import './UserCard.scss'
 import {withRouter} from 'react-router-dom';
+import profilePhoto from '../../../images/icono-perfil-2.jpg';
 
 function UserCard({nombre,apellido,id,history}) {
     
@@ -12,7 +13,7 @@ function UserCard({nombre,apellido,id,history}) {
             <div className='d-flex justify-content-end mr-4'>
                 <i className="far fa-heart fa-2x cursor-pointer"></i>
             </div>
-            <img src="https://place-hold.it/100" className="card-img-top rounded-circle w-75 m-auto " alt="..." />
+            <img src={profilePhoto} className="card-img-top rounded-circle w-75 m-auto " alt="..." />
             <div className="card-body">
                 <div className='d-flex justify-content-center'>
                     <h5 className="card-title">{`${nombre} ${apellido}`}</h5>

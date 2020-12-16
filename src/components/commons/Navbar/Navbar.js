@@ -3,6 +3,8 @@ import useAuth from '../../../hooks/useAuth';
 import { logout, getUser } from '../../../services/authService';
 import { toast } from 'react-toastify';
 import { NavLink } from 'react-router-dom'
+import profilePhoto from '../../../images/icono-perfil-2.jpg';
+import './Navbar.scss';
 
 function Navbar() {
     const { setRefresh } = useAuth();
@@ -26,8 +28,8 @@ function Navbar() {
                 <li className="nav-item dropdown no-arrow">
                     <div className="nav-link dropdown-toggle" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span className="mr-2 d-none d-lg-inline text-gray-600 small">Hi, {getUser() ? getUser().firstName : null}</span>
-                        <img className="img-profile rounded-circle" src="https://place-hold.it/100" alt='Profile'/>
+                        <span className="mr-2 d-none d-lg-inline text-gray-600" id="welcome">Hi, {getUser() ? getUser().firstName : null}</span>
+                        <img className="img-profile rounded-circle border border-primary" src={profilePhoto} alt='Profile'/>
                     </div>
                     <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                         aria-labelledby="userDropdown">
