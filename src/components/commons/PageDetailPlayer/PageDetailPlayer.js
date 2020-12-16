@@ -6,6 +6,7 @@ import Loading from '../Loading/Loading';
 import { logout, getToken, getUser } from '../../../services/authService';
 import useAuth from '../../../hooks/useAuth';
 import { toast } from 'react-toastify';
+import profilePhoto from '../../../images/icono-perfil-2.jpg';
 
 
 // Para hacer match
@@ -129,7 +130,7 @@ function PageDetailPlayer(props) {
                         :
                         <>
                             <div className="card col-md-6" style={{ width: '18rem' }}>
-                                <img src='https://place-hold.it/100' className="card-img-top mt-3 rounded-circle" alt="imagen de prueba"></img>
+                                <img src={profilePhoto} className="card-img-top mt-3 rounded-circle" alt="imagen de prueba"></img>
                             </div>
 
                             <div className='row d-flex justify-content-center'>
