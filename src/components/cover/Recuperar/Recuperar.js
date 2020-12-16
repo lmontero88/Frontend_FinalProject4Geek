@@ -97,7 +97,6 @@ import React from 'react'
                       </button>
                     </form>
                     <hr />
-
                     <div className="text-center">
                       <a className="small" href="login.html">
                         ¿Ya tienes una cuenta? ¡Iniciar sesión!

@@ -23,27 +23,27 @@ const EditarPerfil = () => {
         <form>
           <div className="form-row">
             <div className="form-group col-md-6 col-sm-12">
-              <label htmlFor="firstName">First Name</label>
+              <label htmlFor="firstName">Nombre</label>
               <input
                 type="text"
-                name="firstName"
+                name="Nombre"
                 value={user.firstName}
                 className="form-control"
                 id="firstName"
-                placeholder="First name"
+                placeholder="Nombre "
                 onChange={handleChange}
                 disabled
               />
             </div>
             <div className="form-group col-md-6 col-sm-12">
-              <label htmlFor="lastName">Last Name</label>
+              <label htmlFor="lastName">Apellido</label>
               <input
                 type="text"
-                name="lastName"
+                name="Apellido"
                 value={user.lastName}
                 className="form-control"
                 id="lastName"
-                placeholder="Last name"
+                placeholder="Apellido"
                 onChange={handleChange}
                 disabled
               />
@@ -66,7 +66,7 @@ const EditarPerfil = () => {
           </div>
           <div className="form-row">
             <div className="form-group col-md-12 col-sm-12">
-              <label htmlFor="phone">Phone Number</label>
+              <label htmlFor="phone">Numero de telefono</label>
               <input
                 type="text"
                 name="phone"
@@ -91,7 +91,7 @@ const EditarPerfil = () => {
           </div>
           <div className="form-row">
             <div className="form-group col-md-12 col-sm-12">
-              <label htmlFor="birthdate">Birthdate</label>
+              <label htmlFor="birthdate">Fecha de nacimiento</label>
               <input
                 type="text"
                 name="birthdate"
@@ -140,7 +140,7 @@ const EditarPerfil = () => {
               }}
               */
             >
-              Save
+              Guardar
             </button>
           </div>
         </form>

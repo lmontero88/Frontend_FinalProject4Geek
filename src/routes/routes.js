@@ -77,6 +77,8 @@ const routes = [
     path: '*',
     page: NotFound
   },
+
+  
 ]
 
 export default routes;

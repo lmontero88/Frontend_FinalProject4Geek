@@ -14,7 +14,7 @@ function Sidebar() {
         <div>
             <ul ref={sideBarRef} className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sticky-top" id="accordionSidebar">
 
-                <Link exact to="/" className="sidebar-brand d-flex align-items-center justify-content-center">
+                <Link to="/" className="sidebar-brand d-flex align-items-center justify-content-center">
                     <div className="sidebar-brand-icon rotate-n-15">
                         <i className="fas fa-basketball-ball"></i>
                     </div>
@@ -75,7 +75,7 @@ function Sidebar() {
 
                 
             </ul>
-        </div>
+            </div>
     )
 }
 

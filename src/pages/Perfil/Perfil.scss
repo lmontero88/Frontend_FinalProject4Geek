@@ -3,11 +3,26 @@
     height: 150px;
 }
 
+#editImageModalLabel {
+    text-decoration: underline;
+}
+
 #photo2 {
     width: 300px;
     height: 267px;
 }
 
+#profilePhoto {
+    width: 220px;
+    height: 220px;
+    margin-right: 10px;
+}
+
 #formFile {
     cursor: pointer;
+}
+
+#trash:hover {
+    cursor: pointer;
+    color: rgb(255, 152, 16);
 }

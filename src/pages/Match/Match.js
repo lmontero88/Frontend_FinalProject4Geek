@@ -112,7 +112,7 @@ const Match = () => {
                         className="custom-select custom-select-sm mb-1"
                         id="deporte"
                       >
-                        <option selected>Open this select menu</option>
+                        <option selected>Abre este menu</option>
                         <option>Soccer</option>
                         <option>Basketball</option>
                         <option>Paddle</option>
@@ -127,7 +127,7 @@ const Match = () => {
                         className="custom-select custom-select-sm mb-1"
                         id="experiencia"
                       >
-                        <option selected>Open this select menu</option>
+                        <option selected>Abre este menu</option>
                         <option>Principiante</option>
                         <option>Intermedio</option>
                         <option>Avanzado</option>
@@ -137,8 +137,9 @@ const Match = () => {
 
                     <div className="form-row border-bottom">
                       <div className="form-group col-md-12">
-                        <label htmlFor="availableDays">Available Days</label>
+                        <label for="availableDays">Días disponibles</label>
                         <select className="form-control" id="availableDays">
+                          <option>Selecciona un día</option>
                           <option>Lunes</option>
                           <option>Martes</option>
                           <option>Miercoles</option>
