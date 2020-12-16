@@ -91,7 +91,7 @@ const EditarPerfil = () => {
           </div>
           <div className="form-row">
             <div className="form-group col-md-12 col-sm-12">
-              <label htmlFor="birthdate">Birthdate</label>
+              <label htmlFor="birthdate">Fecha de nacimiento</label>
               <input
                 type="text"
                 name="birthdate"
@@ -140,7 +140,7 @@ const EditarPerfil = () => {
               }}
               */
             >
-              Save
+              Guardar
             </button>
           </div>
         </form>
