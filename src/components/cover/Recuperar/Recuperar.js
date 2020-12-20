@@ -1,62 +1,36 @@
-import React from 'react'
+import React, { useState } from "react";
+import { API_URL } from '../../../utils/constants';
+import { toast } from "react-toastify";
 
 
- const Recuperar = () => {
-//   const { id } = useParams();
-//     const [url, setUrl] = useState(`${API_URL}/players/${id}`)
-//     const [loading, setLoading] = useState(false)
-//     const { setRefresh } = useAuth();
-//     const [email, setEmail] = useState([])
+const Recuperar = () => {
+  const [recuperar, setRecuperar] = useState({email: ""});
 
-//     const handleInputChange = ({target})=>{
-//       setEmail({
-//         ...email,
-//         [target.name]:target.value
-//       })
-        
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setRecuperar({ ...recuperar, [name]: value });
+  };
 
-// }
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    
+      const params = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(recuperar)
+    };
+    const response = await fetch(`${API_URL}/recuperar-password`, params);
+    const data = await response.json();
+    if(response.status >= 200 && response.status < 300) {
+      toast.success(data.message)
+    }
+    else {
+      toast.error(data.message)
+    }
+  };
 
-//   const RecuperarContrasena = async () => {
-//     try {
-//         setLoading(true)
-
-//         const token = getToken();
-//         if (token === null) {
-
-//             setRefresh(true)
-//         }
-//         else {
-//             const params = {
-//                 method: "POST",
-//                 headers: {
-//                     "Authorization": token,
-//                     "Content-Type": "application/json",
-//                 },
-//                 body: JSON.stringify(match)
-//             };
-//             const response = await fetch(`${API_URL}/recuperar-password`, params);
-
-//             if (response.status === 401) {
-//                 logout()
-//                 toast.warn("Su token ha expirado. Vuelva a iniciar sesión.")
-//                 setRefresh(true)
-//             }
-//             else if (response.status >= 200 && response.status < 300) {
-//                 const data = await response.json();
-//                 toast.success(data.message)
-//             }
-//             else {
-//                 toast.err("Ha ocurrido un error.")
-//             }
-//         }
-//         setLoading(false)
-//     }
-//     catch (error) {
-//         setLoading(false)
-//         toast.error(error.message)
-//     }
-// }
 
   return (
     <div
@@ -83,22 +57,22 @@ import React from 'react'
                       <div className="form-group">
                         <input
                           type="email"
-                          className="form-control form-control"
+                          className="form-control form-control" onChange={handleChange}
                           id="exampleInputEmail"
-                          placeholder="Correo Electronico" 
+                          placeholder="Correo Electronico"
+                          name='email'
                         />
                       </div>
                       <div className="form-group row"></div>
                       <button
-                        href="login.html"
-                        className="btn btn-primary  btn-block" 
+                        className="btn btn-primary  btn-block" onClick={handleSubmit}
                       >
                         Recuperar Contraseña
                       </button>
                     </form>
                     <hr />
                     <div className="text-center">
-                      <a className="small" href="login.html">
+                      <a className="small">
                         ¿Ya tienes una cuenta? ¡Iniciar sesión!
                       </a>
                     </div>
